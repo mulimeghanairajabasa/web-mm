@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Beranda", href: "/" },
-  { label: "Tentang Kami", href: "/about" },
+  { label: "Tentang Kami", href: "/tentang" },
   { label: "Kegiatan", href: "/kegiatan" },
   { label: "Artikel", href: "/artikel" },
   { label: "Kontak", href: "/kontak" },
