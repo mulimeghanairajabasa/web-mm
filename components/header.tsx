@@ -16,6 +16,7 @@ const navLinks = [
   { label: "Kegiatan", href: "/kegiatan" },
   { label: "Artikel", href: "/artikel" },
   { label: "Kontak", href: "/kontak" },
+  { label: "Test", href: "/test" },
 ];
 
 /* ─────────────────────────────────────────────
