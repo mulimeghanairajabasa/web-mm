@@ -1,6 +1,7 @@
 import ArticlesSection from "@/components/article";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Header2 from "@/components/header2";
 import HeroSection from "@/components/hero";
 import IntroSection from "@/components/intro";
 import IntroSection2 from "@/components/intro2";

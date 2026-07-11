@@ -1,238 +1,164 @@
 "use client";
 
-import Image from "next/image";
+import * as React from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
 
-/* ─────────────────────────────────────────────
-   Data
-───────────────────────────────────────────── */
+// Impor komponen Shadcn
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+// Impor Logo
+import LogoMuliMekhnai from "@/components/icons/logoMuliMekhnai";
+
+interface HeaderProps {
+  /**
+   * Class tambahan untuk mengatur warna teks saat posisi transparan di paling atas.
+   * Gunakan "text-white" jika hero gelap, atau "text-foreground" jika hero terang.
+   */
+  className?: string;
+}
 
 const navLinks = [
-  { label: "Beranda", href: "/" },
-  { label: "Tentang Kami", href: "/tentang" },
-  { label: "Kegiatan", href: "/kegiatan" },
-  { label: "Artikel", href: "/artikel" },
-  { label: "Kontak", href: "/kontak" },
-  { label: "Test", href: "/test" },
+  { name: "Beranda", href: "/" },
+  { name: "Tentang Kami", href: "/tentang" },
+  { name: "Kegiatan", href: "/kegiatan" },
+  { name: "Artikel", href: "/artikel" },
+  { name: "Kontak", href: "/kontak" },
 ];
 
-/* ─────────────────────────────────────────────
-   Sub-components
-───────────────────────────────────────────── */
+export default function Header2({ className }: HeaderProps) {
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname();
 
-function Logo({ scrolled }: { scrolled: boolean }) {
-  return (
-    <Link
-      href="/"
-      className="flex items-center gap-3 shrink-0"
-      aria-label="Muli Mekhanai Rajabasa — Beranda"
-    >
-      <div className="relative w-10 h-10">
-        <Image
-          src="/images/logo.png"
-          alt="Logo Muli Mekhanai Rajabasa"
-          fill
-          sizes="40px"
-          className="object-contain"
-          priority
-        />
-      </div>
-      <span
-        className={cn(
-          "font-serif font-bold leading-none tracking-[-0.01em]",
-          "text-[clamp(13px,1.3vw,16px)]",
-          "transition-colors duration-300",
-          scrolled ? "text-[#1a1a1a]" : "text-white",
-        )}
-      >
-        Muli Mekhanai
-        <span
-          className={cn(
-            "block text-[10px] font-sans font-medium tracking-[0.15em] uppercase mt-[2px]",
-            "transition-colors duration-300",
-            scrolled ? "text-[#b8860b]" : "text-[#d4a017]",
-          )}
-        >
-          Rajabasa
-        </span>
-      </span>
-    </Link>
-  );
-}
-
-function DesktopNav({ scrolled }: { scrolled: boolean }) {
-  return (
-    <nav className="hidden md:flex items-center gap-[clamp(20px,3vw,36px)]">
-      {navLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={cn(
-            "relative text-[12px] font-medium tracking-[0.08em] uppercase",
-            "transition-colors duration-300",
-            "after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:h-px",
-            "after:bg-[#b8860b] after:transition-all after:duration-250",
-            "hover:after:w-full hover:text-[#b8860b]",
-            scrolled ? "text-[#1a1a1a]" : "text-white/85",
-          )}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
-function BurgerButton({
-  open,
-  scrolled,
-  onClick,
-}: {
-  open: boolean;
-  scrolled: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={open ? "Tutup menu" : "Buka menu"}
-      aria-expanded={open}
-      className={cn(
-        "md:hidden flex items-center justify-center",
-        "w-10 h-10 shrink-0",
-        "transition-colors duration-300",
-        scrolled ? "text-[#1a1a1a]" : "text-white",
-      )}
-    >
-      {open ? (
-        <X size={22} strokeWidth={1.5} />
-      ) : (
-        <Menu size={22} strokeWidth={1.5} />
-      )}
-    </button>
-  );
-}
-
-function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
-  return (
-    <div
-      className={cn(
-        "md:hidden absolute top-full left-0 right-0",
-        "bg-white border-t border-[#e5e5e5]",
-        "transition-all duration-300 overflow-hidden",
-        open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0",
-      )}
-    >
-      <nav className="flex flex-col px-[5%] py-4">
-        {navLinks.map((link, i) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onClose}
-            className={cn(
-              "py-4 text-[12px] font-medium tracking-[0.1em] uppercase",
-              "text-[#1a1a1a] hover:text-[#b8860b]",
-              "transition-colors duration-200",
-              i !== navLinks.length - 1 && "border-b border-[#f0f0f0]",
-            )}
-          >
-            {link.label}
-          </Link>
-        ))}
-
-        {/* Mobile CTA */}
-        <div className="pt-4 pb-2">
-          <Link
-            href="/daftar"
-            onClick={onClose}
-            className={cn(
-              "inline-flex items-center gap-2 w-full justify-center",
-              "bg-[#b8860b] text-[#1a1a1a]",
-              "py-3 px-6",
-              "text-[11px] font-medium tracking-[0.15em] uppercase",
-              "hover:bg-[#d4a017] transition-colors duration-250",
-            )}
-          >
-            Gabung Sekarang →
-          </Link>
-        </div>
-      </nav>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   Main Component
-───────────────────────────────────────────── */
-
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  /* Lock body scroll when mobile menu is open */
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
-  }, [menuOpen]);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50",
-        "transition-all duration-300",
-        scrolled
-          ? "bg-white/95 backdrop-blur-sm shadow-[0_1px_0_0_#e5e5e5]"
-          : "bg-transparent",
+        "fixed top-0 z-50 w-full transition-all duration-300 ease-in-out",
+        isScrolled
+          ? // Saat di-scroll: Menggunakan bg-background (#fafafa) dengan efek blur, dan teks utama (#1a1a1a)
+            "bg-background/90 backdrop-blur-md border-b border-border py-3 text-foreground shadow-sm"
+          : // Saat di paling atas: Transparan, padding lebih besar, mewarisi warna dari props className
+            cn("bg-transparent py-5", className),
       )}
     >
-      <div
-        className={cn(
-          "relative",
-          "flex items-center justify-between",
-          "max-w-[1100px] mx-auto",
-          "px-[5%]",
-          "transition-all duration-300",
-          scrolled ? "h-[64px]" : "h-[80px]",
-        )}
-      >
-        <Logo scrolled={scrolled} />
-        <DesktopNav scrolled={scrolled} />
-
-        {/* Desktop CTA */}
-        <Link
-          href="/daftar"
-          className={cn(
-            "hidden md:inline-flex items-center gap-2 shrink-0",
-            "border text-[11px] font-medium tracking-[0.15em] uppercase",
-            "px-5 py-[10px]",
-            "transition-colors duration-300",
-            scrolled
-              ? "border-[#b8860b] text-[#b8860b] hover:bg-[#b8860b] hover:text-[#1a1a1a]"
-              : "border-white/60 text-white hover:border-white hover:bg-white/10",
-          )}
-        >
-          Gabung
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        {/* KIRI: Logo */}
+        <Link href="/" className="relative z-10 flex items-center">
+          {/* Logo akan mengikuti warna dari parent saat transparan, dan menjadi default saat di-scroll */}
+          <LogoMuliMekhnai className="h-10 w-auto transition-transform hover:scale-105" />
         </Link>
 
-        <BurgerButton
-          open={menuOpen}
-          scrolled={scrolled}
-          onClick={() => setMenuOpen((prev) => !prev)}
-        />
-      </div>
+        {/* TENGAH: Navigasi Desktop */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isActive
+                    ? "text-primary font-bold"
+                    : "opacity-90 hover:opacity-100",
+                )}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+        {/* UJUNG KANAN: Button & Mobile Menu */}
+        <div className="flex items-center gap-4 relative z-10">
+          {/* Tombol Gabung (Desktop) - Menggunakan warna Emas (#c69009) yang selalu kontras */}
+          <Button
+            className="hidden md:inline-flex rounded-full px-6 shadow-md hover:shadow-lg transition-all"
+            variant="default"
+          >
+            Gabung
+          </Button>
+
+          {/* Menu Mobile (Sheet Shadcn) */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden hover:bg-transparent"
+                aria-label="Buka Menu"
+              >
+                {/* Ikon menu menyesuaikan warna teks parent */}
+                <Menu className="h-7 w-7" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-75 sm:w-100 flex flex-col bg-background "
+            >
+              <SheetHeader className="mb-6 border-b border-border pb-4 mt-4">
+                {/* Menggunakan font-courgette yang sudah dipetakan di globals.css */}
+                <SheetTitle className="text-left font-courgette text-3xl text-primary ">
+                  Muli Mekhanai
+                </SheetTitle>
+              </SheetHeader>
+
+              <div className="flex flex-col gap-2 flex-1 px-8">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "text-lg font-medium py-3 border-b border-border/50 transition-colors hover:text-primary",
+                        isActive ? "text-primary font-bold" : "text-foreground",
+                      )}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Tombol Gabung (Mobile) */}
+              <div className="mt-auto pt-6 pb-4">
+                <Button
+                  className="w-full  text-white h-12 shadow-md"
+                  size="lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Gabung Sekarang
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </header>
   );
 }

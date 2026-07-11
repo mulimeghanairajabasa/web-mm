@@ -35,25 +35,20 @@ function Hero() {
     >
       <TrailImage
         images={[
-          "images/trail/1.webp",
-          "images/trail/2.webp",
-          "images/trail/3.webp",
-          "images/trail/4.webp",
-          "images/trail/5.webp",
-          "images/trail/6.webp",
-          "images/trail/7.webp",
-          "images/trail/8.webp",
-          "images/trail/9.webp",
+          "images/trail/01.webp",
+          "images/trail/02.webp",
+          "images/trail/03.webp",
+          "images/trail/04.webp",
+          "images/trail/05.webp",
+          "images/trail/06.webp",
+          "images/trail/07.webp",
+          "images/trail/08.webp",
+          "images/trail/09.webp",
           "images/trail/10.webp",
           "images/trail/11.webp",
           "images/trail/12.webp",
           "images/trail/13.webp",
           "images/trail/14.webp",
-          "images/trail/15.webp",
-          "images/trail/16.webp",
-          "images/trail/17.webp",
-          "images/trail/18.webp",
-          "images/trail/19.webp",
         ]}
         threshold={60}
         maxVisible={6}
