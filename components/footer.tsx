@@ -41,10 +41,10 @@ const socialLinks = [
 function TopOrnamentLine() {
   return (
     <div
-      className="w-full h-[3px]"
+      className="w-full h-1 md:h-1.5"
       style={{
         background:
-          "linear-gradient(90deg, transparent 0%, #b8860b 30%, #8b0000 70%, transparent 100%)",
+          "linear-gradient(90deg, transparent 0%, var(--primary) 30%, var(--secondary) 70%, transparent 100%)",
       }}
       aria-hidden="true"
     />
@@ -55,12 +55,12 @@ function FooterLogo() {
   return (
     <div className="flex flex-col gap-4">
       <Link href="/" aria-label="Muli Mekhanai Rajabasa — Beranda">
-        <div className="relative w-[120px] h-[120px]">
+        <div className="relative w-32 h-32 md:w-36 md:h-36">
           <Image
-            src="/images/logo.png"
+            src="/images/logo2.png"
             alt="Logo Muli Mekhanai Rajabasa"
             fill
-            sizes="120px"
+            sizes="144px"
             className="object-contain"
           />
         </div>
@@ -68,9 +68,9 @@ function FooterLogo() {
 
       <p
         className={cn(
-          "font-light leading-[1.75] max-w-[240px]",
-          "text-white/50",
-          "text-[clamp(12px,1.1vw,13px)]",
+          "font-light leading-relaxed max-w-xs",
+          "text-background/50",
+          "text-xs md:text-sm",
         )}
       >
         Organisasi pemuda aktif dan berbudaya dari Rajabasa, Bandar Lampung.
@@ -82,11 +82,11 @@ function FooterLogo() {
 
 function UsefulLinks() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 md:gap-5">
       <h3
         className={cn(
-          "text-[10px] uppercase tracking-[0.25em] font-medium",
-          "text-[#b8860b]",
+          "text-[10px] md:text-xs uppercase tracking-widest font-bold",
+          "text-primary",
         )}
       >
         Tautan
@@ -98,15 +98,15 @@ function UsefulLinks() {
             <Link
               href={link.href}
               className={cn(
-                "inline-flex items-center gap-2",
-                "text-[clamp(12px,1.2vw,14px)] font-light",
-                "text-white/50",
-                "transition-colors duration-200",
-                "hover:text-[#b8860b]",
+                "group inline-flex items-center gap-2",
+                "text-sm md:text-base font-light",
+                "text-background/50",
+                "transition-colors duration-300",
+                "hover:text-primary",
               )}
             >
               <span
-                className="inline-block w-3 h-px bg-[#b8860b] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                className="inline-block w-3 h-px bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 aria-hidden="true"
               />
               {link.label}
@@ -120,17 +120,17 @@ function UsefulLinks() {
 
 function SocialLinks() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 md:gap-5">
       <h3
         className={cn(
-          "text-[10px] uppercase tracking-[0.25em] font-medium",
-          "text-[#b8860b]",
+          "text-[10px] md:text-xs uppercase tracking-widest font-bold",
+          "text-primary",
         )}
       >
         Ikuti Kami
       </h3>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 md:gap-4">
         {socialLinks.map(({ label, href, icon: Icon }) => (
           <a
             key={label}
@@ -139,25 +139,23 @@ function SocialLinks() {
             rel="noopener noreferrer"
             aria-label={label}
             className={cn(
-              "inline-flex items-center gap-3",
-              "text-white/50",
-              "transition-colors duration-200",
-              "hover:text-[#b8860b]",
+              "group inline-flex items-center gap-3 md:gap-4",
+              "text-background/50",
+              "transition-colors duration-300",
+              "hover:text-primary",
             )}
           >
             <div
               className={cn(
-                "w-8 h-8 border border-white/10 shrink-0",
+                "w-8 h-8 md:w-10 md:h-10 border border-background/10 shrink-0",
                 "flex items-center justify-center",
-                "transition-colors duration-200",
-                "hover:border-[#b8860b]",
+                "transition-colors duration-300",
+                "group-hover:border-primary",
               )}
             >
-              <Icon size={14} strokeWidth={1.5} />
+              <Icon size={16} strokeWidth={1.5} className="md:w-5 md:h-5" />
             </div>
-            <span className="text-[clamp(12px,1.2vw,14px)] font-light">
-              {label}
-            </span>
+            <span className="text-sm md:text-base font-light">{label}</span>
           </a>
         ))}
       </div>
@@ -169,17 +167,21 @@ function FooterBottom() {
   return (
     <div
       className={cn(
-        "flex flex-col sm:flex-row items-center justify-between",
-        "gap-3 pt-6 border-t border-white/10",
-        "text-[11px] text-white/25",
+        "flex flex-col sm:flex-row items-center justify-center text-center", // orientasi tengah
+        "gap-3 pt-6 md:pt-8 border-t border-background/10",
+        "text-[10px] md:text-xs text-background/30",
       )}
     >
       <p>
-        &copy; {new Date().getFullYear()} Muli Mekhanai Rajabasa. Hak cipta
-        dilindungi.
-      </p>
-      <p className="tracking-[0.05em]">
-        Rajabasa, Bandar Lampung — Lampung, Indonesia
+        Guwaian Muli Mekhanai Rajabasa &copy; {new Date().getFullYear()} -{" "}
+        <a
+          href="https://www.teknisee.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#3ff3f3] transition-colors"
+        >
+          Teknisee
+        </a>
       </p>
     </div>
   );
@@ -191,16 +193,16 @@ function FooterBottom() {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#111111] overflow-hidden">
+    <footer className="relative bg-foreground overflow-hidden">
       <TopOrnamentLine />
 
       {/* Subtle diagonal pattern */}
       <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(45deg, #b8860b 0, #b8860b 1px, transparent 0, transparent 50%)",
-          backgroundSize: "20px 20px",
+            "repeating-linear-gradient(45deg, var(--primary) 0, var(--primary) 1px, transparent 0, transparent 50%)",
+          backgroundSize: "24px 24px", // 20px -> 24px for slightly looser pattern
         }}
         aria-hidden="true"
       />
@@ -208,15 +210,15 @@ export default function Footer() {
       <div
         className={cn(
           "relative z-10",
-          "max-w-[1100px] mx-auto",
-          "px-[5%] pt-[8vh] pb-[4vh]",
-          "flex flex-col gap-12",
+          "max-w-6xl mx-auto",
+          "px-6 md:px-10 pt-16 md:pt-24 pb-8 md:pb-12",
+          "flex flex-col gap-12 md:gap-16",
         )}
       >
         {/* ── Main grid ── */}
         <div
           className={cn(
-            "grid gap-10",
+            "grid gap-12 md:gap-10",
             "grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr]",
           )}
         >

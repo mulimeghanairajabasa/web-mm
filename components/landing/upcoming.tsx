@@ -24,35 +24,39 @@ interface EventData {
   location: string;
   price: string;
   image: string;
+  link: string;
 }
 
 const events: EventData[] = [
   {
     badge: "Festival",
-    name: "Festival Tari Tradisional Lampung",
-    date: "12 Juli 2025",
+    name: "Hut Republik Indonesia ke-81",
+    date: "10 Agustus 2024 - 28 Agustus 2024",
     time: "08.00 – 17.00 WIB",
     location: "Lapangan Rajabasa, Bandar Lampung",
     price: "Gratis",
     image: "/images/hero.png",
+    link: "/hut-ri-81",
   },
   {
-    badge: "Bakti Sosial",
-    name: "Gerak Bersih & Bakti Sosial Rajabasa",
-    date: "26 Juli 2025",
+    badge: "Workshop",
+    name: "Workshop Seni & Budaya Lampung",
+    date: "Setiap Minggu",
     time: "07.00 – 12.00 WIB",
     location: "Kelurahan Rajabasa Jaya",
     price: "Gratis",
     image: "/images/hero.png",
+    link: "/kegiatan/workshop-seni-budaya",
   },
   {
-    badge: "Workshop",
-    name: "Workshop Kerajinan Tapis Lampung",
-    date: "9 Agustus 2025",
-    time: "09.00 – 15.00 WIB",
+    badge: "Pengajian Rutin",
+    name: "Pengajian Rutin Majelis Taklim Rajabasa",
+    date: "Setiap Jumat",
+    time: "10.00 – Selesai WIB",
     location: "Balai Adat Rajabasa",
-    price: "Rp 50.000",
+    price: "Gratis",
     image: "/images/hero.png",
+    link: "/kegiatan/pengajian-rutin",
   },
 ];
 
@@ -74,7 +78,7 @@ type CardState =
 function EyebrowLine() {
   return (
     <span
-      className="inline-block w-8 h-px bg-[#b8860b] opacity-60"
+      className="inline-block w-8 h-px bg-primary opacity-60"
       aria-hidden="true"
     />
   );
@@ -93,7 +97,7 @@ function MetaRow({ icon, label, value }: MetaRowProps) {
         className={cn(
           "w-9 h-9 border border-border shrink-0",
           "flex items-center justify-center",
-          "text-[#b8860b]",
+          "text-primary",
         )}
         aria-hidden="true"
       >
@@ -102,13 +106,13 @@ function MetaRow({ icon, label, value }: MetaRowProps) {
       <div>
         <span
           className={cn(
-            "block text-[10px] uppercase tracking-[0.15em] font-medium",
-            "text-[#737373] leading-none mb-[3px]",
+            "block text-[10px] uppercase tracking-widest font-bold",
+            "text-muted-foreground leading-none mb-1",
           )}
         >
           {label}
         </span>
-        <span className="text-[clamp(13px,1.3vw,15px)] text-foreground leading-none">
+        <span className="text-sm md:text-base text-foreground font-medium leading-none">
           {value}
         </span>
       </div>
@@ -185,15 +189,18 @@ export default function UpcomingEventsSection() {
 
   return (
     <section
-      className={cn("bg-background overflow-hidden", "px-[5%] py-[10vh]")}
+      className={cn(
+        "bg-background overflow-hidden",
+        "px-6 md:px-10 py-20 md:py-32",
+      )}
     >
       {/* ── Header ── */}
-      <div className="text-center mb-[6vh]">
+      <div className="text-center mb-12 md:mb-16">
         <p
           className={cn(
-            "inline-flex items-center gap-3 mb-5",
-            "text-[clamp(10px,1.1vw,12px)] tracking-[0.28em] uppercase font-medium",
-            "text-[#b8860b]",
+            "inline-flex items-center gap-3 mb-4",
+            "text-[10px] md:text-xs tracking-widest uppercase font-bold",
+            "text-primary",
           )}
         >
           <EyebrowLine />
@@ -203,12 +210,15 @@ export default function UpcomingEventsSection() {
 
         <h2
           className={cn(
-            "font-serif font-bold leading-[1.2]",
+            "font-sans font-extrabold leading-tight",
             "text-foreground",
-            "text-[clamp(28px,4vw,48px)]",
+            "text-3xl md:text-4xl lg:text-5xl",
           )}
         >
-          Acara <em className="italic text-[#b8860b]">Mendatang</em>
+          Acara{" "}
+          <em className="font-courgette font-normal not-italic text-primary">
+            Mendatang
+          </em>
         </h2>
       </div>
 
@@ -216,22 +226,22 @@ export default function UpcomingEventsSection() {
       <div
         className={cn(
           "flex flex-col md:flex-row items-center",
-          "gap-[clamp(24px,4vw,64px)]",
-          "max-w-[1000px] mx-auto",
+          "gap-8 md:gap-16 lg:gap-20",
+          "max-w-5xl mx-auto",
         )}
       >
         {/* ── Card (Image) ── */}
         <div
           className={cn(
-            "relative shrink-0 overflow-hidden",
-            "w-full md:w-[38%]",
-            "h-[clamp(220px,45vh,460px)]",
+            "relative shrink-0 overflow-hidden bg-muted",
+            "w-full md:w-2/5",
+            "h-64 sm:h-80 md:h-105 lg:h-115",
           )}
         >
           <div
             className={cn(
               "absolute inset-0",
-              "transition-all duration-[480ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "transition-all duration-480ms ease-in-out",
               cardStateClasses(cardState),
             )}
           >
@@ -239,7 +249,7 @@ export default function UpcomingEventsSection() {
               src={ev.image}
               alt={ev.name}
               fill
-              sizes="(max-width: 768px) 100vw, 38vw"
+              sizes="(max-width: 768px) 100vw, 40vw"
               className="object-cover"
               priority={current === 0}
             />
@@ -248,9 +258,9 @@ export default function UpcomingEventsSection() {
             <span
               className={cn(
                 "absolute top-4 left-4",
-                "bg-[#b8860b] text-[#1a1a1a]",
-                "text-[10px] font-medium tracking-[0.15em] uppercase",
-                "px-3 py-[5px]",
+                "bg-primary text-primary-foreground",
+                "text-[10px] font-bold tracking-widest uppercase",
+                "px-3 py-1.5 rounded-sm shadow-sm",
               )}
             >
               {ev.badge}
@@ -261,16 +271,16 @@ export default function UpcomingEventsSection() {
         {/* ── Info Panel ── */}
         <div
           className={cn(
-            "flex-1 min-w-0",
-            "transition-opacity duration-[350ms] ease-in-out",
+            "flex-1 min-w-0 w-full",
+            "transition-opacity duration-350ms ease-in-out",
             infoVisible ? "opacity-100" : "opacity-0",
           )}
         >
           {/* Counter */}
           <p
             className={cn(
-              "text-[11px] tracking-[0.2em] uppercase font-medium",
-              "text-[#b8860b] mb-3",
+              "text-[10px] md:text-xs tracking-widest uppercase font-bold",
+              "text-primary mb-3",
             )}
           >
             {String(current + 1).padStart(2, "0")} /{" "}
@@ -280,33 +290,33 @@ export default function UpcomingEventsSection() {
           {/* Event name */}
           <h3
             className={cn(
-              "font-serif font-bold leading-[1.2]",
-              "text-foreground mb-6",
-              "text-[clamp(22px,3vw,36px)]",
+              "font-sans font-extrabold leading-tight",
+              "text-foreground mb-6 md:mb-8",
+              "text-2xl md:text-3xl lg:text-4xl",
             )}
           >
             {ev.name}
           </h3>
 
           {/* Meta rows */}
-          <div className="flex flex-col gap-3 mb-8">
+          <div className="flex flex-col gap-4 mb-8 md:mb-10">
             <MetaRow
-              icon={<Calendar size={16} strokeWidth={1.5} />}
+              icon={<Calendar size={18} strokeWidth={2} />}
               label="Tanggal"
               value={ev.date}
             />
             <MetaRow
-              icon={<Clock size={16} strokeWidth={1.5} />}
+              icon={<Clock size={18} strokeWidth={2} />}
               label="Waktu"
               value={ev.time}
             />
             <MetaRow
-              icon={<MapPin size={16} strokeWidth={1.5} />}
+              icon={<MapPin size={18} strokeWidth={2} />}
               label="Lokasi"
               value={ev.location}
             />
             <MetaRow
-              icon={<Ticket size={16} strokeWidth={1.5} />}
+              icon={<Ticket size={18} strokeWidth={2} />}
               label="Biaya"
               value={ev.price}
             />
@@ -314,37 +324,43 @@ export default function UpcomingEventsSection() {
 
           {/* CTA */}
           <a
-            href="#"
+            href={ev.link}
             className={cn(
-              "inline-flex items-center gap-[10px]",
-              "border-[1.5px] border-[#b8860b] text-[#b8860b]",
-              "px-8 py-[13px]",
-              "text-[12px] font-medium tracking-[0.15em] uppercase",
-              "transition-colors duration-250",
-              "hover:bg-[#b8860b] hover:text-[#1a1a1a]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8860b]",
+              "inline-flex items-center justify-center gap-2.5",
+              "border-2 border-primary text-primary",
+              "px-9 py-3.5 rounded-md",
+              "text-xs font-bold tracking-widest uppercase",
+              "transition-all duration-300",
+              "hover:bg-primary hover:text-primary-foreground",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              "group",
             )}
           >
             Daftar Sekarang
-            <span aria-hidden="true">→</span>
+            <span
+              className="text-sm transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              →
+            </span>
           </a>
 
           {/* Navigation */}
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex items-center gap-4 mt-10 border-t border-border pt-6">
             <button
               onClick={prev}
               disabled={animating}
               aria-label="Acara sebelumnya"
               className={cn(
-                "w-10 h-10 border border-border",
+                "w-10 h-10 border border-border rounded-sm",
                 "flex items-center justify-center",
                 "text-foreground",
-                "transition-colors duration-200",
-                "hover:border-[#b8860b] hover:text-[#b8860b]",
+                "transition-colors duration-300",
+                "hover:border-primary hover:text-primary hover:bg-primary/5",
                 "disabled:opacity-40 disabled:cursor-not-allowed",
               )}
             >
-              <ArrowLeft size={16} strokeWidth={1.5} />
+              <ArrowLeft size={18} strokeWidth={2} />
             </button>
 
             <button
@@ -352,19 +368,19 @@ export default function UpcomingEventsSection() {
               disabled={animating}
               aria-label="Acara berikutnya"
               className={cn(
-                "w-10 h-10 border border-border",
+                "w-10 h-10 border border-border rounded-sm",
                 "flex items-center justify-center",
                 "text-foreground",
-                "transition-colors duration-200",
-                "hover:border-[#b8860b] hover:text-[#b8860b]",
+                "transition-colors duration-300",
+                "hover:border-primary hover:text-primary hover:bg-primary/5",
                 "disabled:opacity-40 disabled:cursor-not-allowed",
               )}
             >
-              <ArrowRight size={16} strokeWidth={1.5} />
+              <ArrowRight size={18} strokeWidth={2} />
             </button>
 
             {/* Dots */}
-            <div className="flex items-center gap-[6px]">
+            <div className="flex items-center gap-2 ml-2">
               {events.map((_, i) => (
                 <button
                   key={i}
@@ -372,11 +388,11 @@ export default function UpcomingEventsSection() {
                   disabled={animating}
                   aria-label={`Acara ke-${i + 1}`}
                   className={cn(
-                    "h-[2px] transition-all duration-250",
+                    "h-1 rounded-full transition-all duration-300",
                     "disabled:cursor-not-allowed",
                     i === current
-                      ? "w-8 bg-[#b8860b]"
-                      : "w-5 bg-[#e5e5e5] hover:bg-[#b8860b]/40",
+                      ? "w-8 bg-primary"
+                      : "w-4 bg-border hover:bg-primary/40",
                   )}
                 />
               ))}

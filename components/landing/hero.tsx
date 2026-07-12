@@ -1,3 +1,4 @@
+// components/landing/hero.tsx
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -10,8 +11,8 @@ function EyebrowLine() {
     <span
       className={cn(
         "inline-block h-px",
-        "w-[24px] sm:w-[32px] md:w-[40px]",
-        "bg-[#b8860b]",
+        "w-6 sm:w-8 md:w-10", // 24px, 32px, 40px
+        "bg-primary",
       )}
       aria-hidden="true"
     />
@@ -21,12 +22,13 @@ function EyebrowLine() {
 function OrnamentDivider() {
   return (
     <div
-      className="flex items-center justify-center gap-3 w-fit mx-auto mb-[2.5vh]"
+      className="flex items-center justify-center gap-3 w-fit mx-auto mb-6" // gap-[10px] -> gap-3 (12px) atau gap-2.5 (10px)
       aria-hidden="true"
     >
-      <span className="w-[32px] sm:w-[48px] md:w-[60px] h-px bg-[#b8860b]/50" />
-      <span className="w-[6px] h-[6px] bg-[#b8860b] rotate-45 shrink-0" />
-      <span className="w-[32px] sm:w-[48px] md:w-[60px] h-px bg-[#b8860b]/50" />
+      <span className="w-8 sm:w-12 md:w-15 h-px bg-primary/50" />{" "}
+      {/* 32px, 48px, 60px */}
+      <span className="w-1.5 h-1.5 bg-primary rotate-45 shrink-0" /> {/* 6px */}
+      <span className="w-8 sm:w-12 md:w-15 h-px bg-primary/50" />
     </div>
   );
 }
@@ -34,13 +36,13 @@ function OrnamentDivider() {
 function ScrollIndicator() {
   return (
     <div
-      className="absolute bottom-[4vh] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 sm:hidden md:flex"
+      className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 sm:hidden md:flex"
       aria-hidden="true"
     >
       <span
         className={cn(
-          "text-[10px] tracking-[0.2em] uppercase",
-          "text-white/40",
+          "text-xs tracking-widest uppercase", // 10px
+          "text-background/40",
         )}
       >
         Scroll
@@ -48,8 +50,8 @@ function ScrollIndicator() {
       <span
         className={cn(
           "w-px h-10",
-          "bg-gradient-to-b from-[#b8860b]/70 to-transparent",
-          "animate-[scrollPulse_2s_ease-in-out_infinite]",
+          "bg-linear-to-b from-primary/70 to-transparent",
+          "animate-[scrollPulse_2s_ease-in-out_infinite]", // Keyframe kustom tetap harus dalam bracket
         )}
       />
     </div>
@@ -63,11 +65,10 @@ function ScrollIndicator() {
 export default function HeroSection() {
   return (
     <>
-      {/* Keyframe animation injected once */}
       <style>{`
         @keyframes scrollPulse {
           0%, 100% { opacity: 0.4; transform: scaleY(1); }
-          50%       { opacity: 1;   transform: scaleY(1.1); }
+          50%      { opacity: 1;   transform: scaleY(1.1); }
         }
       `}</style>
 
@@ -75,8 +76,8 @@ export default function HeroSection() {
         className={cn(
           "relative w-full overflow-hidden",
           "flex items-center justify-center",
-          "h-svh min-h-[560px] max-h-[900px]",
-          "xl:max-h-[1000px]",
+          "h-svh min-h-140 max-h-225", // 560px -> 140, 900px -> 225
+          "xl:max-h-250", // 1000px -> 250
         )}
         role="banner"
       >
@@ -84,7 +85,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 w-full h-full" aria-hidden="true">
           <Image
             src="/images/hero.png"
-            alt=""
+            alt="Muli Mekhanai Hero Background"
             fill
             priority
             quality={90}
@@ -93,32 +94,32 @@ export default function HeroSection() {
           />
         </div>
 
-        {/* ── Dark Overlay ── */}
+        {/* ── Dark Overlay (Sengaja dibuat foggy/gelap untuk keterbacaan teks) ── */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(10,8,4,0.55) 0%, rgba(10,8,4,0.70) 50%, rgba(10,8,4,0.82) 100%)",
+              "linear-gradient(to bottom, rgba(26, 26, 26, 0.55) 0%, rgba(26, 26, 26, 0.70) 50%, rgba(26, 26, 26, 0.85) 100%)",
           }}
           aria-hidden="true"
         />
 
         {/* ── Top Ornament Line ── */}
         <div
-          className="absolute top-0 left-0 right-0 h-[3px]"
+          className="absolute top-0 left-0 right-0 h-0.75 opacity-90" // 3px -> 0.75
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, #b8860b 30%, #8b0000 70%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, var(--primary) 30%, var(--secondary) 70%, transparent 100%)",
           }}
           aria-hidden="true"
         />
 
         {/* ── Bottom Ornament Line ── */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-[3px]"
+          className="absolute bottom-0 left-0 right-0 h-0.75 opacity-90"
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, #8b0000 30%, #b8860b 70%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, var(--secondary) 30%, var(--primary) 70%, transparent 100%)",
           }}
           aria-hidden="true"
         />
@@ -127,17 +128,17 @@ export default function HeroSection() {
         <div
           className={cn(
             "relative z-10 text-center",
-            "px-[5%] w-full max-w-[860px]",
+            "px-6 md:px-10 w-full max-w-215", // px-[5%] menjadi px-6/10, max-w-[860px] -> max-w-215
           )}
         >
           {/* Eyebrow */}
           <p
             className={cn(
-              "inline-flex items-center gap-[10px]",
-              "mb-[2vh]",
-              "text-[10px] sm:text-[11px] md:text-[13px]",
-              "tracking-[0.25em] uppercase font-medium",
-              "text-[#b8860b]",
+              "inline-flex items-center gap-2.5", // 10px -> 2.5
+              "mb-5",
+              "text-xs md:text-sm",
+              "tracking-widest uppercase font-bold",
+              "text-primary",
             )}
             aria-label="Muli Mekhanai Rajabasa"
           >
@@ -149,28 +150,30 @@ export default function HeroSection() {
           {/* Headline */}
           <h1
             className={cn(
-              "font-serif font-bold leading-[1.18] tracking-[-0.01em]",
-              "text-[#fafafa]",
-              "text-[clamp(28px,6.5vw,54px)]",
-              "mb-[2.5vh]",
+              "font-sans font-extrabold leading-tight tracking-tight",
+              "text-background",
+              "text-4xl md:text-5xl lg:text-6xl", // Menggantikan clamp
+              "mb-6",
             )}
           >
-            Menjaga <em className="italic text-[#d4a017]">Akar Budaya</em>,
-            <br />
+            Menjaga{" "}
+            <em className="font-courgette font-normal not-italic text-primary">
+              Akar Budaya
+            </em>
+            ,<br />
             Bergerak untuk Masyarakat.
           </h1>
 
-          {/* Diamond Divider */}
           <OrnamentDivider />
 
           {/* Sub-headline */}
           <p
             className={cn(
-              "font-light leading-[1.75] tracking-[0.01em]",
-              "text-white/[0.82]",
-              "text-[clamp(12px,1.6vw,17px)]",
-              "max-w-[680px] mx-auto",
-              "mb-[4vh]",
+              "font-light leading-relaxed",
+              "text-background/80",
+              "text-sm md:text-base", // Menggantikan clamp
+              "max-w-170 mx-auto", // 680px -> 170
+              "mb-10",
             )}
           >
             Kami adalah pemuda-pemudi Rajabasa yang berdiri di atas fondasi
@@ -183,18 +186,19 @@ export default function HeroSection() {
           <a
             href="#"
             className={cn(
-              "inline-flex items-center gap-[10px]",
-              "border border-[#b8860b] text-[#b8860b]",
-              "px-[clamp(28px,4vw,44px)] py-[clamp(12px,1.8vh,16px)]",
-              "text-[clamp(12px,1.3vw,14px)] font-medium tracking-[0.15em] uppercase",
-              "transition-colors duration-300",
-              "hover:bg-[#b8860b] hover:text-[#1a1a1a]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8860b] focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+              "inline-flex items-center justify-center gap-2.5",
+              "border-2 border-primary text-primary",
+              "px-7 py-3 md:px-11 md:py-4 rounded-md", // Menggantikan clamp px/py
+              "text-xs md:text-sm font-bold tracking-widest uppercase",
+              "transition-all duration-300",
+              "hover:bg-primary hover:text-primary-foreground",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              "group",
             )}
           >
             Mari Berkolaborasi
             <span
-              className="text-[14px] transition-transform duration-300 group-hover:translate-x-1"
+              className="text-sm transition-transform duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             >
               →
@@ -202,7 +206,6 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* ── Scroll Indicator ── */}
         <ScrollIndicator />
       </section>
     </>

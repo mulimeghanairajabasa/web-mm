@@ -1,27 +1,22 @@
-import ArticlesSection from "@/components/article";
+import ArticlesSection from "@/components/landing/article";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import Header2 from "@/components/header2";
-import HeroSection from "@/components/hero";
-import IntroSection from "@/components/intro";
-import IntroSection2 from "@/components/intro2";
-import JoinUsSection from "@/components/joinus";
-import JoinUsSection2 from "@/components/joinus2";
-import UpcomingEventsSection from "@/components/upcoming";
-import WhatWeDoSection from "@/components/whatwedo";
+import HeroSection from "@/components/landing/hero";
+import IntroSection from "@/components/landing/intro";
+import UpcomingEventsSection from "@/components/landing/upcoming";
+import WhatWeDoSection from "@/components/landing/whatwedo";
+import CTASection from "@/components/landing/cta";
 
 export default function Home() {
   return (
     <main>
-      <Header />
+      <Header className="text-white" />
       <HeroSection />
-      {/* <IntroSection /> */}
-      <IntroSection2 />
+      <IntroSection />
       <WhatWeDoSection />
       <UpcomingEventsSection />
       <ArticlesSection />
-      {/* <JoinUsSection /> */}
-      <JoinUsSection2 />
+      <CTASection />
       <Footer />
     </main>
   );

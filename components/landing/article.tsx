@@ -20,7 +20,7 @@ interface ArticleData {
 
 const articles: ArticleData[] = [
   {
-    slug: "festival-tari-2024",
+    slug: "festival-tari",
     category: "Budaya & Tradisi",
     title:
       "Festival Tari Tradisional Rajabasa 2024: Merawat Gerak, Menjaga Makna",
@@ -29,18 +29,19 @@ const articles: ArticleData[] = [
     author: "Muli Mekhanai",
     date: "10 Juni 2025",
     readTime: "5 menit baca",
-    image: "/images/articles/festival-tari.jpg",
+    image: "/images/articles/tari.webp",
     featured: true,
   },
   {
-    slug: "baksos-rajabasa-2025",
-    category: "Aksi Sosial",
-    title: "Bakti Sosial Rajabasa: Satu Hari, Ratusan Keluarga Terbantu",
+    slug: "hubungan-keluarga-adat-lampung",
+    category: "Budaya & Tradisi",
+    title: "Hubungan Keluarga Adat Lampung: Menjaga Tradisi di Era Modern",
     excerpt:
-      "Kegiatan bakti sosial tahunan kami kembali hadir membawa bantuan sembako, pemeriksaan kesehatan gratis, dan semangat gotong royong untuk warga Rajabasa Jaya.",
+      " Dalam masyarakat Lampung, keluarga adat memegang peranan penting dalam menjaga tradisi dan nilai-nilai budaya. Artikel ini membahas bagaimana masyrakat lampung menamai hubungan keluarga adat.",
     author: "Muli Mekhanai",
     date: "3 Mei 2025",
-    image: "/images/articles/baksos.jpg",
+    readTime: "4 menit baca",
+    image: "/images/articles/kerabat.webp",
   },
   {
     slug: "workshop-tapis-2025",
@@ -50,7 +51,8 @@ const articles: ArticleData[] = [
       "Dua puluh peserta belajar langsung dari pengrajin senior bagaimana kain tapis Lampung ditenun dengan penuh kesabaran dan makna — satu benang sekaligus.",
     author: "Muli Mekhanai",
     date: "18 April 2025",
-    image: "/images/articles/workshop-tapis.jpg",
+    readTime: "3 menit baca",
+    image: "/images/articles/tapis.webp",
   },
 ];
 
@@ -61,7 +63,7 @@ const articles: ArticleData[] = [
 function EyebrowLine() {
   return (
     <span
-      className="inline-block w-8 h-px bg-[#b8860b] opacity-60"
+      className="inline-block w-8 h-px bg-primary opacity-60"
       aria-hidden="true"
     />
   );
@@ -69,15 +71,12 @@ function EyebrowLine() {
 
 function MetaDot() {
   return (
-    <span
-      className="w-[3px] h-[3px] rounded-full bg-[#b8860b]"
-      aria-hidden="true"
-    />
+    <span className="w-1 h-1 rounded-full bg-primary" aria-hidden="true" />
   );
 }
 
 /* ─────────────────────────────────────────────
-   Feature Article (Left — 3/8)
+   Feature Article (Left — 5/8 ratio)
 ───────────────────────────────────────────── */
 
 function FeatureArticle({ article }: { article: ArticleData }) {
@@ -86,25 +85,25 @@ function FeatureArticle({ article }: { article: ArticleData }) {
       className={cn(
         "group flex flex-col h-full",
         "bg-card border border-border overflow-hidden",
-        "transition-colors duration-250 hover:border-[#b8860b]",
+        "transition-colors duration-300 hover:border-primary",
       )}
     >
       {/* Image */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
+      <div className="relative w-full aspect-4/3 md:aspect-auto md:flex-1 overflow-hidden bg-muted">
         <Image
           src={article.image}
           alt={article.title}
           fill
-          sizes="(max-width: 700px) 100vw, 30vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          sizes="(max-width: 768px) 100vw, 60vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {article.featured && (
           <span
             className={cn(
-              "absolute top-3 left-3",
-              "bg-[#b8860b] text-[#1a1a1a]",
-              "text-[9px] font-medium tracking-[0.15em] uppercase",
-              "px-[10px] py-1",
+              "absolute top-4 left-4",
+              "bg-primary text-primary-foreground",
+              "text-[10px] font-bold tracking-widest uppercase",
+              "px-3 py-1.5 rounded-sm shadow-sm",
             )}
           >
             Unggulan
@@ -113,11 +112,11 @@ function FeatureArticle({ article }: { article: ArticleData }) {
       </div>
 
       {/* Body */}
-      <div className="flex flex-col flex-1 gap-[10px] p-6">
+      <div className="flex flex-col gap-3 p-6 md:p-8">
         <p
           className={cn(
-            "text-[10px] uppercase tracking-[0.2em] font-medium",
-            "text-[#8b0000]",
+            "text-[10px] md:text-xs uppercase tracking-widest font-bold",
+            "text-secondary",
           )}
         >
           {article.category}
@@ -126,20 +125,21 @@ function FeatureArticle({ article }: { article: ArticleData }) {
         <Link
           href={`/artikel/${article.slug}`}
           className={cn(
-            "font-serif font-bold leading-[1.25]",
+            "font-sans font-extrabold leading-tight",
             "text-foreground",
-            "text-[clamp(18px,2vw,24px)]",
-            "hover:text-[#b8860b] transition-colors duration-200",
+            "text-2xl md:text-3xl",
+            "hover:text-primary transition-colors duration-200 line-clamp-3",
           )}
         >
           {article.title}
         </Link>
 
+        {/* Menggunakan font-comic-neue untuk teks artikel */}
         <p
           className={cn(
-            "font-light leading-[1.75] line-clamp-3",
-            "text-[#525252]",
-            "text-[clamp(12px,1.2vw,13px)]",
+            "font-comic-neue leading-relaxed line-clamp-3",
+            "text-muted-foreground",
+            "text-sm md:text-base",
           )}
         >
           {article.excerpt}
@@ -147,8 +147,8 @@ function FeatureArticle({ article }: { article: ArticleData }) {
 
         <div
           className={cn(
-            "flex items-center gap-3 mt-auto pt-2",
-            "text-[11px] text-[#737373]",
+            "flex items-center flex-wrap gap-2 md:gap-3 mt-4 pt-4 border-t border-border/50",
+            "text-xs font-medium text-muted-foreground",
           )}
         >
           <span>{article.author}</span>
@@ -174,28 +174,28 @@ function StackedArticle({ article }: { article: ArticleData }) {
   return (
     <article
       className={cn(
-        "group flex flex-row flex-1",
+        "group flex flex-col sm:flex-row flex-1",
         "bg-card border border-border overflow-hidden",
-        "transition-colors duration-250 hover:border-[#b8860b]",
+        "transition-colors duration-300 hover:border-primary",
       )}
     >
       {/* Thumbnail */}
-      <div className="relative flex-[0_0_38%] overflow-hidden">
+      <div className="relative w-full sm:w-2/5 shrink-0 aspect-video sm:aspect-auto overflow-hidden bg-muted">
         <Image
           src={article.image}
           alt={article.title}
           fill
-          sizes="(max-width: 700px) 100vw, 20vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="(max-width: 640px) 100vw, 30vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
       {/* Body */}
-      <div className="flex flex-col flex-1 gap-2 p-5 justify-center">
+      <div className="flex flex-col flex-1 gap-2.5 p-5 md:p-6 justify-center">
         <p
           className={cn(
-            "text-[10px] uppercase tracking-[0.2em] font-medium",
-            "text-[#8b0000]",
+            "text-[10px] uppercase tracking-widest font-bold",
+            "text-secondary",
           )}
         >
           {article.category}
@@ -204,20 +204,21 @@ function StackedArticle({ article }: { article: ArticleData }) {
         <Link
           href={`/artikel/${article.slug}`}
           className={cn(
-            "font-serif font-bold leading-[1.25]",
+            "font-sans font-extrabold leading-tight",
             "text-foreground",
-            "text-[clamp(15px,1.6vw,19px)]",
-            "hover:text-[#b8860b] transition-colors duration-200",
+            "text-lg md:text-xl",
+            "hover:text-primary transition-colors duration-200 line-clamp-2",
           )}
         >
           {article.title}
         </Link>
 
+        {/* Menggunakan font-comic-neue untuk teks artikel */}
         <p
           className={cn(
-            "font-light leading-[1.75] line-clamp-3",
-            "text-[#525252]",
-            "text-[clamp(12px,1.2vw,13px)]",
+            "font-comic-neue leading-relaxed line-clamp-2",
+            "text-muted-foreground",
+            "text-sm",
           )}
         >
           {article.excerpt}
@@ -225,8 +226,8 @@ function StackedArticle({ article }: { article: ArticleData }) {
 
         <div
           className={cn(
-            "flex items-center gap-3 mt-auto pt-1",
-            "text-[11px] text-[#737373]",
+            "flex items-center flex-wrap gap-2 mt-2 pt-2",
+            "text-[11px] font-medium text-muted-foreground",
           )}
         >
           <span>{article.author}</span>
@@ -246,21 +247,21 @@ export default function ArticlesSection() {
   const [feature, ...stacked] = articles;
 
   return (
-    <section className={cn("bg-muted", "px-[5%] py-[10vh]")}>
+    <section className={cn("bg-muted", "px-6 md:px-10 py-20 md:py-32")}>
       {/* ── Header ── */}
       <div
         className={cn(
-          "flex items-end justify-between",
-          "max-w-[1100px] mx-auto mb-[4vh]",
-          "gap-4 flex-wrap",
+          "flex flex-col sm:flex-row sm:items-end justify-between",
+          "max-w-6xl mx-auto mb-10 md:mb-12",
+          "gap-6",
         )}
       >
         <div>
           <p
             className={cn(
-              "inline-flex items-center gap-3 mb-3",
-              "text-[clamp(10px,1.1vw,12px)] tracking-[0.28em] uppercase font-medium",
-              "text-[#b8860b]",
+              "inline-flex items-center gap-3 mb-4",
+              "text-[10px] md:text-xs tracking-widest uppercase font-bold",
+              "text-primary",
             )}
           >
             <EyebrowLine />
@@ -268,12 +269,15 @@ export default function ArticlesSection() {
           </p>
           <h2
             className={cn(
-              "font-serif font-bold leading-[1.15]",
+              "font-sans font-extrabold leading-tight",
               "text-foreground",
-              "text-[clamp(26px,3.5vw,44px)]",
+              "text-3xl md:text-4xl lg:text-5xl",
             )}
           >
-            Artikel <em className="italic text-[#b8860b]">Terbaru</em>
+            Artikel{" "}
+            <em className="font-courgette font-normal not-italic text-primary">
+              Terbaru
+            </em>
           </h2>
         </div>
 
@@ -281,9 +285,9 @@ export default function ArticlesSection() {
           href="/artikel"
           className={cn(
             "inline-flex items-center gap-2 pb-1",
-            "text-[11px] font-medium tracking-[0.15em] uppercase",
-            "text-[#b8860b] border-b border-[#b8860b]",
-            "hover:opacity-70 transition-opacity duration-200",
+            "text-xs md:text-sm font-bold tracking-widest uppercase",
+            "text-primary border-b-2 border-primary",
+            "hover:text-foreground hover:border-foreground transition-colors duration-300",
             "whitespace-nowrap",
           )}
         >
@@ -291,11 +295,11 @@ export default function ArticlesSection() {
         </Link>
       </div>
 
-      {/* ── Article Grid — 5/8 | 3/8 ── */}
+      {/* ── Article Grid ── */}
       <div
         className={cn(
-          "grid max-w-[1100px] mx-auto gap-5",
-          "grid-cols-1 md:grid-cols-[5fr_3fr]",
+          "grid max-w-6xl mx-auto gap-6 lg:gap-8",
+          "grid-cols-1 lg:grid-cols-[5fr_4fr]", // Penyesuaian grid untuk layar lebar
           "items-stretch",
         )}
       >
@@ -303,7 +307,7 @@ export default function ArticlesSection() {
         <FeatureArticle article={feature} />
 
         {/* Right: two stacked */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-6 lg:gap-8">
           {stacked.map((article) => (
             <StackedArticle key={article.slug} article={article} />
           ))}

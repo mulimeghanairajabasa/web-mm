@@ -21,7 +21,7 @@ const CHAIRMAN_NAME = "Ahmad Rifaldi";
 function EyebrowLine() {
   return (
     <span
-      className="inline-block w-8 h-px bg-[#b8860b] opacity-60"
+      className="inline-block w-8 h-px bg-primary opacity-60"
       aria-hidden="true"
     />
   );
@@ -30,9 +30,9 @@ function EyebrowLine() {
 function OrnamentRule() {
   return (
     <div className="flex items-center gap-3 mb-6" aria-hidden="true">
-      <span className="w-12 h-px bg-[#e5e5e5]" />
-      <span className="w-[5px] h-[5px] rounded-full bg-[#8b0000]" />
-      <span className="w-12 h-px bg-[#e5e5e5]" />
+      <span className="w-12 h-px bg-border" />
+      <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+      <span className="w-12 h-px bg-border" />
     </div>
   );
 }
@@ -42,18 +42,18 @@ function StatItem({ number, label }: { number: string; label: string }) {
     <div className="flex flex-col gap-1">
       <span
         className={cn(
-          "font-serif font-bold leading-none",
-          "text-[#b8860b]",
-          "text-[clamp(24px,3vw,36px)]",
+          "font-sans font-extrabold leading-none",
+          "text-primary",
+          "text-3xl md:text-4xl",
         )}
       >
         {number}
       </span>
       <span
         className={cn(
-          "uppercase tracking-[0.15em] font-medium",
-          "text-[#737373]",
-          "text-[clamp(9px,0.9vw,11px)]",
+          "uppercase tracking-widest font-medium",
+          "text-muted-foreground",
+          "text-[10px] md:text-xs",
         )}
       >
         {label}
@@ -73,8 +73,8 @@ function LeftColumn() {
       <p
         className={cn(
           "inline-flex items-center gap-3 mb-5",
-          "text-[clamp(10px,1.1vw,12px)] tracking-[0.28em] uppercase font-medium",
-          "text-[#b8860b]",
+          "text-[10px] md:text-xs tracking-widest uppercase font-bold",
+          "text-primary",
         )}
       >
         <EyebrowLine />
@@ -84,12 +84,15 @@ function LeftColumn() {
       {/* Title */}
       <h2
         className={cn(
-          "font-serif font-bold leading-[1.15] tracking-[-0.01em]",
+          "font-sans font-extrabold leading-tight tracking-tight",
           "text-foreground mb-6",
-          "text-[clamp(28px,3.5vw,48px)]",
+          "text-3xl md:text-4xl lg:text-5xl",
         )}
       >
-        Ikam Muli <em className="italic text-[#b8860b]">Mekhanai</em>
+        Ikam{" "}
+        <em className="font-courgette font-normal not-italic text-primary">
+          Muli Mekhanai
+        </em>
       </h2>
 
       <OrnamentRule />
@@ -97,9 +100,9 @@ function LeftColumn() {
       {/* Body */}
       <p
         className={cn(
-          "font-light leading-[1.9] mb-6",
-          "text-[#404040]",
-          "text-[clamp(13px,1.3vw,15px)]",
+          "font-light leading-relaxed mb-6",
+          "text-foreground/80",
+          "text-sm md:text-base",
         )}
       >
         Sejak <strong className="font-medium text-foreground">2017</strong>,
@@ -116,14 +119,14 @@ function LeftColumn() {
       {/* Spoiler teaser */}
       <div
         className={cn(
-          "border-l-2 border-[#b8860b]",
-          "px-4 py-3 bg-[#fdf8ee]",
-          "text-[clamp(12px,1.2vw,13px)] italic leading-[1.7]",
-          "text-[#737373]",
+          "border-l-2 border-primary",
+          "px-4 py-3 bg-primary/5",
+          "text-xs md:text-sm italic leading-relaxed",
+          "text-muted-foreground",
         )}
       >
         Pelajari lebih dalam tentang{" "}
-        <span className="not-italic font-medium text-[#b8860b]">
+        <span className="not-italic font-medium text-primary">
           sejarah berdiri, visi &amp; misi
         </span>
         , serta seluruh jajaran pengurus yang menggerakkan organisasi ini —
@@ -133,8 +136,8 @@ function LeftColumn() {
       {/* Stats */}
       <div
         className={cn(
-          "flex gap-[clamp(20px,3vw,48px)]",
-          "mt-8 pt-6 border-t border-[#e5e5e5]",
+          "flex gap-6 md:gap-12",
+          "mt-8 pt-6 border-t border-border",
         )}
       >
         {stats.map((s) => (
@@ -156,7 +159,7 @@ function RightColumn() {
       <div
         className={cn(
           "relative w-full overflow-hidden",
-          "aspect-[3/4] max-h-[520px]",
+          "aspect-3/4 max-h-130",
         )}
       >
         <Image
@@ -170,7 +173,7 @@ function RightColumn() {
 
         {/* Inner frame ornament */}
         <div
-          className="absolute inset-[10px] border border-[#b8860b]/35 pointer-events-none"
+          className="absolute inset-2.5 border border-primary/35 pointer-events-none"
           aria-hidden="true"
         />
       </div>
@@ -178,27 +181,25 @@ function RightColumn() {
       {/* Badge */}
       <div
         className={cn(
-          "w-full bg-[#1a1a1a]",
+          "w-full bg-foreground",
           "flex items-center gap-3",
-          "px-5 py-[14px]",
+          "px-5 py-3.5",
         )}
       >
         <span
-          className="w-[6px] h-[6px] rounded-full bg-[#b8860b] shrink-0"
+          className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"
           aria-hidden="true"
         />
         <p
           className={cn(
-            "font-light tracking-[0.05em]",
-            "text-[#fafafa]",
-            "text-[clamp(11px,1vw,13px)]",
+            "font-light tracking-wide",
+            "text-background",
+            "text-xs md:text-sm",
           )}
         >
           Sambutan dari{" "}
-          <strong className="font-medium text-[#d4a017]">
-            {CHAIRMAN_NAME}
-          </strong>
-          , Ketua Muli Mekhanai Rajabasa
+          <strong className="font-medium text-primary">{CHAIRMAN_NAME}</strong>,
+          Ketua Muli Mekhanai Rajabasa
         </p>
       </div>
     </div>
@@ -209,42 +210,48 @@ function RightColumn() {
    Main Component
 ───────────────────────────────────────────── */
 
-export default function IntroSection2() {
+export default function IntroSection() {
   return (
-    <section className={cn("bg-background", "px-[5%] py-[10vh]")}>
+    <section className={cn("bg-background", "px-6 md:px-10 py-20 md:py-32")}>
       {/* ── Two-column grid ── */}
       <div
         className={cn(
-          "grid max-w-[1100px] mx-auto",
+          "grid max-w-6xl mx-auto",
           "grid-cols-1 md:grid-cols-2",
-          "gap-[clamp(32px,5vw,80px)]",
+          "gap-10 md:gap-20",
           "items-start",
         )}
       >
         <LeftColumn />
 
         {/* Photo column — appears above text on mobile */}
-        <div className="order-first md:order-last max-w-[320px] mx-auto md:max-w-none w-full">
+        <div className="order-first md:order-last max-w-80 mx-auto md:max-w-none w-full">
           <RightColumn />
         </div>
       </div>
 
       {/* ── CTA ── */}
-      <div className="flex justify-center mt-[4vh]">
+      <div className="flex justify-center mt-10 md:mt-16">
         <Link
           href="/about"
           className={cn(
-            "inline-flex items-center gap-[10px]",
-            "border-[1.5px] border-[#b8860b] text-[#b8860b]",
-            "px-9 py-[13px]",
-            "text-[12px] font-medium tracking-[0.15em] uppercase",
-            "transition-colors duration-250",
-            "hover:bg-[#b8860b] hover:text-[#1a1a1a]",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8860b]",
+            "inline-flex items-center justify-center gap-2.5",
+            "border-2 border-primary text-primary",
+            "px-9 py-3.5 rounded-md",
+            "text-xs font-bold tracking-widest uppercase",
+            "transition-all duration-300",
+            "hover:bg-primary hover:text-primary-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "group",
           )}
         >
           Selengkapnya tentang Kami
-          <span aria-hidden="true">→</span>
+          <span
+            className="text-sm transition-transform duration-300 group-hover:translate-x-1"
+            aria-hidden="true"
+          >
+            →
+          </span>
         </Link>
       </div>
     </section>

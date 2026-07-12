@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import DukunganSection from "@/components/kegiatan/dukung";
 import HeroKegiatan from "@/components/kegiatan/heroKegiatan";
@@ -14,8 +15,7 @@ export default function Kegiatan() {
       <LombaSection />
       <UcapanSection />
       <DukunganSection />
-
-      {/* <div className="max"></div> */}
+      <Footer />
     </main>
   );
 }

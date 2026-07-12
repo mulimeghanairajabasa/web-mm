@@ -49,7 +49,7 @@ const cards: CardData[] = [
 function EyebrowLine() {
   return (
     <span
-      className="inline-block w-8 h-px bg-[#b8860b] opacity-60"
+      className="inline-block w-8 h-px bg-primary opacity-60"
       aria-hidden="true"
     />
   );
@@ -62,16 +62,16 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
         "group relative bg-card border border-border",
         "flex flex-col gap-4",
         "p-8 md:p-10",
-        "transition-colors duration-250",
-        "hover:border-[#b8860b]",
+        "transition-colors duration-300",
+        "hover:border-primary",
       )}
     >
       {/* Left accent bar */}
       <span
         className={cn(
-          "absolute top-0 left-0 w-[3px] h-full",
-          "bg-[#b8860b]",
-          "opacity-0 transition-opacity duration-250",
+          "absolute top-0 left-0 w-1 h-full",
+          "bg-primary",
+          "opacity-0 transition-opacity duration-300",
           "group-hover:opacity-100",
         )}
         aria-hidden="true"
@@ -82,7 +82,7 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
         className={cn(
           "w-12 h-12 border border-border",
           "flex items-center justify-center shrink-0",
-          "text-[#b8860b]",
+          "text-primary",
         )}
         aria-hidden="true"
       >
@@ -92,8 +92,8 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
       {/* Label */}
       <p
         className={cn(
-          "text-[#8b0000] font-medium uppercase tracking-[0.2em]",
-          "text-[clamp(10px,1vw,11px)]",
+          "text-secondary font-bold uppercase tracking-widest",
+          "text-[10px] md:text-xs",
         )}
       >
         {label}
@@ -102,9 +102,9 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
       {/* Title */}
       <h3
         className={cn(
-          "font-serif font-bold leading-[1.25]",
+          "font-sans font-extrabold leading-tight",
           "text-foreground",
-          "text-[clamp(20px,2.2vw,26px)]",
+          "text-xl md:text-2xl",
         )}
       >
         {title}
@@ -113,9 +113,9 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
       {/* Body */}
       <p
         className={cn(
-          "font-light leading-[1.85] flex-1",
-          "text-[#525252]",
-          "text-[clamp(13px,1.3vw,15px)]",
+          "font-light leading-relaxed flex-1",
+          "text-muted-foreground",
+          "text-sm md:text-base",
         )}
       >
         {body}
@@ -125,14 +125,11 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
       <span
         className={cn(
           "flex items-center gap-2 mt-2",
-          "text-[#b8860b] font-medium uppercase tracking-[0.12em]",
-          "text-[12px]",
+          "text-primary font-bold uppercase tracking-widest",
+          "text-[10px] md:text-xs",
         )}
       >
-        <span
-          className="inline-block w-5 h-px bg-[#b8860b]"
-          aria-hidden="true"
-        />
+        <span className="inline-block w-5 h-px bg-primary" aria-hidden="true" />
         {footer}
       </span>
     </div>
@@ -145,15 +142,15 @@ function ActivityCard({ icon: Icon, label, title, body, footer }: CardData) {
 
 export default function WhatWeDoSection() {
   return (
-    <section className={cn("bg-muted", "px-[5%] py-[10vh]")}>
+    <section className={cn("bg-muted", "px-6 md:px-10 py-20 md:py-32")}>
       {/* ── Header ── */}
-      <div className="text-center mb-[6vh]">
+      <div className="text-center mb-12 md:mb-16">
         <p
           className={cn(
             "inline-flex items-center gap-3",
             "mb-5",
-            "text-[clamp(10px,1.1vw,12px)] tracking-[0.28em] uppercase font-medium",
-            "text-[#b8860b]",
+            "text-[10px] md:text-xs tracking-widest uppercase font-bold",
+            "text-primary",
           )}
         >
           <EyebrowLine />
@@ -163,19 +160,22 @@ export default function WhatWeDoSection() {
 
         <h2
           className={cn(
-            "font-serif font-bold leading-[1.2]",
+            "font-sans font-extrabold leading-tight",
             "text-foreground",
-            "text-[clamp(28px,4vw,48px)]",
+            "text-3xl md:text-4xl lg:text-5xl",
           )}
         >
-          Apa yang Kami <em className="italic text-[#b8860b]">Lakukan</em>
+          Apa yang Kami{" "}
+          <em className="font-courgette font-normal not-italic text-primary">
+            Lakukan
+          </em>
         </h2>
       </div>
 
       {/* ── Card Grid ── */}
       <div
         className={cn(
-          "grid gap-6 mx-auto max-w-[1100px]",
+          "grid gap-6 mx-auto max-w-6xl",
           "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
         )}
       >
