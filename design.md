@@ -53,20 +53,3 @@ Sistem navigasi dirancang datar (_flat_) untuk akses informasi yang cepat.
 ### 3.1 Konfigurasi Tailwind v4 (`globals.css`)
 
 Karena menggunakan Tailwind v4, konfigurasi tema, warna kustom, dan utilitas dimasukkan langsung ke dalam file CSS utama menggunakan direktif `@theme`:
-
-```css
-@import "tailwindcss";
-
-@theme {
-  /* Palet Warna Kustom Lampung */
-  --color-lampung-gold: #d4af37;
-  --color-lampung-red: #c62828;
-  --color-charcoal: #333333;
-
-  /* Tipografi Kustom */
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Inter", sans-serif;
-}
-
-/* Konfigurasi Shadcn UI CSS Variables (Base) di sini... */
-```
