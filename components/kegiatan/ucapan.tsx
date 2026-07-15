@@ -22,7 +22,7 @@ const MOCK_UCAPAN = [
     name: "Budi Santoso",
     asal: "Rajabasa, Lampung",
     ucapan:
-      "Dirgahayu Indonesiaku! Semoga semakin maju dan sejahtera rakyatnya. Merdeka!",
+      "Dirgahayu Indonesiaku! Semoga semakin maju dan sejahtera rakyatnya. Merdeka! lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
     id: 2,
@@ -61,101 +61,24 @@ const MOCK_UCAPAN = [
   },
   {
     id: 7,
-    name: "Reza Rahadian",
-    asal: "Medan",
+    name: "Rina Marlina",
+    asal: "Surabaya",
     ucapan:
-      "Tumbuh dan bersatu. Semoga perbedaan selalu menjadi kekuatan, bukan kelemahan.",
+      "Semoga di umur ke-81 ini, Indonesia semakin berjaya di kancah internasional.",
   },
   {
     id: 8,
-    name: "Nia Ramadhani",
-    asal: "Makassar",
+    name: "Fajar Nugraha",
+    asal: "Yogyakarta",
     ucapan:
-      "Merdeka! Jayalah selalu Indonesiaku tercinta. Mari rayakan dengan penuh syukur.",
+      "Kemerdekaan bukan tanda untuk berhenti berjuang, tapi tanda untuk berjuang lebih keras!",
   },
   {
     id: 9,
-    name: "Deni Sumargo",
-    asal: "Bali",
+    name: "Dewi Lestari",
+    asal: "Rajabasa, Lampung",
     ucapan:
-      "Semangat kemerdekaan harus selalu menyala di hati setiap rakyat Indonesia.",
-  },
-  {
-    id: 10,
-    name: "Putri Tanjung",
-    asal: "Semarang",
-    ucapan:
-      "Dirgahayu RI ke-81. Teruslah berkarya untuk bangsa, wahai generasi muda!",
-  },
-  {
-    id: 11,
-    name: "Agus Harimurti",
-    asal: "Palembang",
-    ucapan:
-      "Satu nusa, satu bangsa, satu bahasa. Selamat merayakan hari kemerdekaan!",
-  },
-  {
-    id: 12,
-    name: "Lesti Kejora",
-    asal: "Cianjur",
-    ucapan:
-      "Semoga para pahlawan yang telah gugur tersenyum melihat kemajuan bangsa ini.",
-  },
-  {
-    id: 13,
-    name: "Rizky Billar",
-    asal: "Padang",
-    ucapan:
-      "Bangkit dan majulah bangsaku! Kemerdekaan adalah hak segala bangsa.",
-  },
-  {
-    id: 14,
-    name: "Ayu Ting Ting",
-    asal: "Depok",
-    ucapan:
-      "HUT RI ke-81! Mari kita ciptakan inovasi-inovasi baru untuk Indonesia Raya.",
-  },
-  {
-    id: 15,
-    name: "Boy William",
-    asal: "Tangerang",
-    ucapan:
-      "Peringatan hari ini adalah pengingat bahwa kebebasan itu mahal harganya.",
-  },
-  {
-    id: 16,
-    name: "Cinta Laura",
-    asal: "Bogor",
-    ucapan:
-      "Selamat hari jadi negaraku. Semoga pendidikan dan kesejahteraan makin merata.",
-  },
-  {
-    id: 17,
-    name: "Deddy Corbuzier",
-    asal: "Malang",
-    ucapan:
-      "Berhenti mengeluh, mulailah bertindak. Itu arti kemerdekaan yang sesungguhnya.",
-  },
-  {
-    id: 18,
-    name: "Maudy Ayunda",
-    asal: "Solo",
-    ucapan:
-      "Bangga menjadi anak Indonesia. Dirgahayu Republik Indonesia ke-81!",
-  },
-  {
-    id: 19,
-    name: "Iqbaal Ramadhan",
-    asal: "Balikpapan",
-    ucapan:
-      "Teruslah bertumbuh menjadi negara yang kuat dan berbudaya, Indonesiaku.",
-  },
-  {
-    id: 20,
-    name: "Tulus",
-    asal: "Bukittinggi",
-    ucapan:
-      "Semoga nyanyian kemerdekaan selalu menggema di setiap sudut nusantara.",
+      "Salam merdeka dari Muli Mekhanai! Mari majukan desa dan negara kita bersama.",
   },
 ];
 
@@ -288,11 +211,23 @@ export default function UcapanSeWction() {
         </div>
 
         {/* ── Grid Cards Ucapan ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-10">
+        {/* ── Grid Cards Ucapan ── */}
+        <div
+          className={cn(
+            "w-full mb-10",
+            "columns-1 md:columns-2 lg:columns-3",
+            "gap-6",
+          )}
+        >
           {MOCK_UCAPAN.map((item) => (
             <div
               key={item.id}
-              className="bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow"
+              className={cn(
+                "break-inside-avoid mb-6",
+                "bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm",
+                "flex flex-col gap-4",
+                "hover:shadow-md transition-shadow",
+              )}
             >
               {/* Header Card (Nama & Asal) */}
               <div className="flex items-start gap-3">

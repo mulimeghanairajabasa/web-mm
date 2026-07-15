@@ -19,105 +19,155 @@ interface EventItem {
   time: string;
   location: string;
   description: string;
-  progress: number;
 }
 
+/* Diurutkan kronologis, 7 Agustus → 29 Agustus 2026.
+   Acara berpasangan dengan rentang tanggal sama (Mobile Legend & Mancing,
+   Bola & Gaple) masing-masing berlangsung sepanjang rentang penuh.
+   Acara di tanggal 17 Agustus dibedakan lewat jam agar tidak tumpang tindih. */
 const MOCK_EVENTS: EventItem[] = [
   {
     id: 1,
-    title: "Lomba E-Sport Mobile Legends",
+    title: "Lomba Bola Antar RT",
     category: "Lomba",
     status: "Tersedia",
-    date: "Sabtu, 15 Agustus 2026",
-    time: "19:00 WIB",
-    location: "Balai Desa Rajabasa",
+    date: "7 - 9 Agustus 2026",
+    time: "15:00 - Selesai",
+    location: "Lapangan Bola Rajabasa",
     description:
-      "Turnamen E-Sport antar pemuda desa dengan total hadiah jutaan rupiah. Bawa tim terbaikmu!",
-    progress: 85,
+      "Turnamen sepak bola antar RT yang digelar selama tiga hari. Ajang unjuk kekompakan sekaligus pemanasan menyambut bulan kemerdekaan.",
   },
   {
     id: 2,
-    title: "Upacara Bendera Kemerdekaan",
-    category: "Upacara",
+    title: "Turnamen Gaple",
+    category: "Lomba",
     status: "Tersedia",
-    date: "Senin, 17 Agustus 2026",
-    time: "07:00 WIB",
-    location: "Lapangan Utama Rajabasa",
+    date: "7 - 9 Agustus 2026",
+    time: "19:00 - Selesai",
+    location: "Balai Desa Rajabasa",
     description:
-      "Upacara pengibaran bendera sang saka merah putih memperingati HUT RI ke-81.",
-    progress: 40,
+      "Turnamen kartu domino klasik yang jadi favorit warga tiap malam. Bawa pasanganmu dan buktikan siapa yang paling jitu membaca kartu.",
   },
   {
     id: 3,
-    title: "Tari Sigeh Penguten",
-    category: "Pertunjukan",
-    status: "Penuh",
-    date: "Senin, 17 Agustus 2026",
-    time: "09:30 WIB",
-    location: "Panggung Utama",
+    title: "Turnamen Mobile Legend",
+    category: "Lomba",
+    status: "Tersedia",
+    date: "12 - 15 Agustus 2026",
+    time: "19:00 - Selesai",
+    location: "Balai Desa Rajabasa",
     description:
-      "Pertunjukan tari tradisional khas Lampung untuk menyambut tamu undangan dan masyarakat.",
-    progress: 100,
+      "Turnamen E-Sport antar pemuda desa berlangsung empat hari beruntun. Bawa tim terbaikmu dan rebut gelar juara MMR!",
   },
   {
     id: 4,
-    title: "Lomba Tarik Tambang Antar RT",
+    title: "Lomba Mancing",
     category: "Lomba",
     status: "Tersedia",
-    date: "Senin, 17 Agustus 2026",
-    time: "15:00 WIB",
-    location: "Lapangan Utama Rajabasa",
+    date: "12 - 15 Agustus 2026",
+    time: "06:00 - Selesai",
+    location: "Kolam Pemancingan Rajabasa",
     description:
-      "Adu kekuatan dan kekompakan antar RT dalam perlombaan tarik tambang tradisional.",
-    progress: 60,
+      "Adu sabar dan strategi memancing selama empat hari, dengan hadiah untuk perolehan ikan terberat tiap harinya.",
   },
   {
     id: 5,
-    title: "Festival Kuliner Nusantara",
-    category: "Pameran",
+    title: "Lomba Anak-Anak",
+    category: "Lomba",
     status: "Tersedia",
-    date: "16 - 17 Agustus 2026",
-    time: "08:00 - Selesai",
-    location: "Sepanjang Jalan Desa",
+    date: "16 Agustus 2026",
+    time: "08:00 WIB",
+    location: "Lapangan Utama Rajabasa",
     description:
-      "Bazar makanan dan minuman tradisional dari berbagai daerah nusantara buatan warga setempat.",
-    progress: 30,
+      "Serangkaian permainan tradisional untuk si kecil: balap kelereng, makan kerupuk, hingga estafet karet gelang.",
   },
   {
     id: 6,
-    title: "Lomba Balap Karung Helm",
-    category: "Lomba",
+    title: "Upacara Bendera Kemerdekaan",
+    category: "Upacara",
     status: "Tersedia",
-    date: "Senin, 17 Agustus 2026",
-    time: "14:00 WIB",
+    date: "17 Agustus 2026",
+    time: "07:00 WIB",
     location: "Lapangan Utama Rajabasa",
     description:
-      "Versi kocak dari balap karung di mana peserta diwajibkan menggunakan helm tertutup.",
-    progress: 90,
+      "Upacara pengibaran bendera sang saka merah putih memperingati HUT RI ke-81, dibuka untuk seluruh warga desa.",
   },
   {
     id: 7,
-    title: "Lomba Panjat Pinang",
-    category: "Lomba",
+    title: "Pawai Kemerdekaan",
+    category: "Pertunjukan",
     status: "Tersedia",
-    date: "Senin, 17 Agustus 2026",
-    time: "16:00 WIB",
-    location: "Lapangan Utama Rajabasa",
+    date: "17 Agustus 2026",
+    time: "09:00 WIB",
+    location: "Sepanjang Jalan Desa",
     description:
-      "Acara puncak perlombaan fisik memperebutkan hadiah menarik di puncak pohon pinang.",
-    progress: 75,
+      "Arak-arakan warga, pelajar, dan komunitas adat menyusuri jalan desa dengan kostum merah putih dan atribut budaya Lampung.",
   },
   {
     id: 8,
-    title: "Malam Puncak & Bagi Hadiah",
+    title: "Tumpengan Bersama",
+    category: "Upacara",
+    status: "Tersedia",
+    date: "17 Agustus 2026",
+    time: "12:00 WIB",
+    location: "Balai Desa Rajabasa",
+    description:
+      "Pemotongan tumpeng sebagai rasa syukur atas kemerdekaan, dilanjutkan makan bersama seluruh warga.",
+  },
+  {
+    id: 9,
+    title: "Pidato Kebangsaan",
+    category: "Upacara",
+    status: "Tersedia",
+    date: "17 Agustus 2026",
+    time: "15:00 WIB",
+    location: "Balai Desa Rajabasa",
+    description:
+      "Sambutan dan renungan kebangsaan dari tokoh masyarakat, mengajak generasi muda merawat semangat proklamasi.",
+  },
+  {
+    id: 10,
+    title: "Tari Ngigel",
     category: "Pertunjukan",
     status: "Tersedia",
-    date: "Senin, 17 Agustus 2026",
+    date: "17 Agustus 2026",
+    time: "19:30 WIB",
+    location: "Panggung Utama",
+    description:
+      "Pertunjukan tari tradisional Lampung yang sarat gerak lemah gemulai, menutup rangkaian acara 17 Agustus dengan khidmat.",
+  },
+  {
+    id: 11,
+    title: "Turnamen Badminton",
+    category: "Lomba",
+    status: "Tersedia",
+    date: "19 - 21 Agustus 2026",
+    time: "16:00 - Selesai",
+    location: "GOR Rajabasa",
+    description:
+      "Turnamen bulu tangkis tiga hari untuk kategori tunggal dan ganda, terbuka bagi seluruh warga desa dan sekitarnya.",
+  },
+  {
+    id: 12,
+    title: "Tari Kreasi",
+    category: "Pertunjukan",
+    status: "Tersedia",
+    date: "22 Agustus 2026",
+    time: "19:00 WIB",
+    location: "Panggung Utama",
+    description:
+      "Penampilan tari kreasi modern hasil karya sanggar muda desa, memadukan gerak kontemporer dengan nuansa budaya lokal.",
+  },
+  {
+    id: 13,
+    title: "Malam Puncak",
+    category: "Pertunjukan",
+    status: "Tersedia",
+    date: "29 Agustus 2026",
     time: "20:00 WIB",
     location: "Panggung Utama",
     description:
-      "Acara penutupan, hiburan musik, dan pembagian hadiah bagi para pemenang lomba.",
-    progress: 10,
+      "Acara penutup rangkaian HUT RI ke-81: hiburan musik, penampilan bintang tamu, dan pembagian hadiah bagi para pemenang lomba.",
   },
 ];
 
@@ -147,7 +197,7 @@ function getCategoryColor(category: EventCategory) {
 export default function SectionLomba() {
   return (
     <section id="agenda-acara" className="w-full bg-gray-50 py-20 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col items-center bg-red-400">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* ── Section Header ── */}
         <div className="text-center max-w-2xl mb-12">
           <h2 className="font-bold text-3xl md:text-4xl text-gray-900 mb-4">
@@ -215,39 +265,20 @@ export default function SectionLomba() {
                   {event.description}
                 </p>
 
-                {/* ── Footer Card: Progress & Actions ── */}
-                <div className="mt-auto">
-                  {/* Progress Bar */}
-                  <div className="flex justify-between text-xs text-gray-500 font-medium mb-1.5">
-                    <span>Pendaftar</span>
-                    <span>{event.progress}%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mb-5">
-                    <div
-                      className={cn(
-                        "h-full rounded-full",
-                        event.progress >= 100 ? "bg-green-500" : "bg-[#E12828]",
-                      )}
-                      style={{ width: `${event.progress}%` }}
-                    />
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-3">
-                    <button
-                      disabled={event.progress >= 100}
-                      className="flex-1 bg-[#E12828] text-white rounded-lg py-2.5 flex justify-center items-center hover:bg-red-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
-                      aria-label="Daftar Acara"
-                    >
-                      <Plus className="w-5 h-5" />
-                    </button>
-                    <button
-                      className="w-11 h-11 border border-[#E12828] text-[#E12828] rounded-lg flex justify-center items-center hover:bg-red-50 transition shrink-0"
-                      aria-label="Lihat Detail"
-                    >
-                      <ArrowUpRight className="w-5 h-5" />
-                    </button>
-                  </div>
+                {/* ── Footer Card: Actions ── */}
+                <div className="mt-auto flex items-center gap-3">
+                  <button
+                    className="flex-1 bg-[#E12828] text-white rounded-lg py-2.5 flex justify-center items-center hover:bg-red-700 transition"
+                    aria-label="Daftar Acara"
+                  >
+                    <Plus className="w-5 h-5" />
+                  </button>
+                  <button
+                    className="w-11 h-11 border border-[#E12828] text-[#E12828] rounded-lg flex justify-center items-center hover:bg-red-50 transition shrink-0"
+                    aria-label="Lihat Detail"
+                  >
+                    <ArrowUpRight className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             </div>

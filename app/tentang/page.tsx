@@ -30,7 +30,7 @@ function Hero() {
     <section
       className={cn(
         "relative w-full overflow-hidden",
-        "h-[100svh] min-h-[500px]",
+        "h-svh min-h-125",
         "bg-foreground", // Latar belakang gelap sebagai base
         "flex items-center justify-center text-center",
       )}
@@ -86,10 +86,9 @@ function Hero() {
             "md:text-6xl lg:text-7xl",
           )}
         >
-          Muli{" "}
-          <em className="font-courgette font-normal not-italic text-primary">
-            Mekhanai
-          </em>{" "}
+          <em className="font-courgette font-normal not-italic text-primary block">
+            Muli Mekhanai
+          </em>
           Rajabasa
         </h2>
       </div>

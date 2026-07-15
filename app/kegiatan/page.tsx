@@ -9,7 +9,7 @@ import UcapanSection from "@/components/kegiatan/ucapan";
 export default function Kegiatan() {
   return (
     <main>
-      <Header />
+      <Header className="text-white" />
       <HeroKegiatan />
       <Merdeka />
       <LombaSection />
