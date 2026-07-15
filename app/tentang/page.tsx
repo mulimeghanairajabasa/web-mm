@@ -7,8 +7,9 @@ import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
 import TrailImage from "@/components/tentang/trailImage";
 import CTASection from "@/components/landing/cta";
+import { metadataTentang } from "@/lib/metadata";
 
-//  section hero, kilas balik, visi-misi, struktur, kontak.
+export const metadata = metadataTentang;
 
 export default function Tentang() {
   return (

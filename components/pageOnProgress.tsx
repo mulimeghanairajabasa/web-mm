@@ -18,7 +18,7 @@ function TapisPattern() {
   );
 }
 
-export default function NotFound() {
+export default function PageOnProgress() {
   return (
     // Menggunakan h-[100dvh] agar pas dengan tinggi layar termasuk di mobile browser
     <main className="h-dvh w-full bg-white flex flex-col justify-between overflow-hidden">
@@ -48,7 +48,7 @@ export default function NotFound() {
         >
           Tabik Pun!
           <span className="text-[#c69009] block mt-2">
-            Gegehno Sekam Kejajau
+            Lebuh Ijo Pagun Sikam Guwai
           </span>
         </h1>
 
@@ -60,9 +60,8 @@ export default function NotFound() {
             "text-sm md:text-base",
           )}
         >
-          Jejak yang Anda cari tidak dapat ditemukan di tanah ini. Mungkin
-          halamannya sudah dipindahkan, diubah namanya, atau memang belum
-          dituliskan ceritanya.
+          Halaman ini sedang dalam proses pengembangan. Silakan kembali ke
+          beranda untuk menjelajahi konten lainnya.
         </p>
 
         {/* Tombol Merah dengan sedikit rounded (rounded-md) */}

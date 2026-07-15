@@ -1,0 +1,6 @@
+# Izinkan semua crawler
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mulimekhanai.com/sitemap.xml

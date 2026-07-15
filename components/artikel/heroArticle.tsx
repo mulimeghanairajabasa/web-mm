@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function HeroSection() {
+export default function HeroSectionArticle() {
   return (
     <section
       className={cn(

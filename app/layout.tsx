@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+// app/layout.tsx
+import { metadataGlobal, viewportGlobal } from "@/lib/metadata";
+import { organizationSchema } from "@/lib/json-ld";
 import { inter, courgette, comicNeue } from "@/styles/fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Muli Mekhanai",
-  description: "Website Anak Muda lampung",
-};
+export const viewport = viewportGlobal;
+export const metadata = metadataGlobal;
 
 export default function RootLayout({
   children,
@@ -14,9 +14,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${inter.variable} ${courgette.variable} ${comicNeue.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

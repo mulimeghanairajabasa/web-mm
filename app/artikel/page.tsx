@@ -1,13 +1,9 @@
-import HeroSection from "@/components/artikel/hero";
-import { cn } from "@/lib/utils";
-import Header from "@/components/header";
+import PageOnProgress from "@/components/pageOnProgress";
+
+import { metadataArtikel } from "@/lib/metadata";
+
+export const metadata = metadataArtikel;
 
 export default function Artikel() {
-  return (
-    <main className={cn("relative ")}>
-      <Header />
-
-      <HeroSection />
-    </main>
-  );
+  return <PageOnProgress />;
 }

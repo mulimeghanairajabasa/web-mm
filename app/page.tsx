@@ -7,6 +7,11 @@ import UpcomingEventsSection from "@/components/landing/upcoming";
 import WhatWeDoSection from "@/components/landing/whatwedo";
 import CTASection from "@/components/landing/cta";
 
+import { metadataLanding } from "@/lib/metadata";
+
+// Metadata spesifik untuk halaman beranda
+export const metadata = metadataLanding;
+
 export default function Home() {
   return (
     <main>
