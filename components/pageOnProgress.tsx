@@ -1,22 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import TapisMotif from "@/components/icons/tapisMotif";
 import LogoMuliMekhnai from "@/components/icons/logoMuliMekhnai";
-
-// Komponen pembantu untuk merender baris motif Tapis secara berulang
-function TapisPattern() {
-  return (
-    <div
-      className="w-full overflow-hidden flex h-10 sm:h-16 md:h-20 text-primary/15 shrink-0"
-      aria-hidden="true"
-    >
-      {/* Merender SVG secara berurutan agar memenuhi lebar layar */}
-      {Array.from({ length: 15 }).map((_, i) => (
-        <TapisMotif key={i} className="h-full w-auto shrink-0" />
-      ))}
-    </div>
-  );
-}
+import TapisPattern from "@/components/icons/tapisPattern";
 
 export default function PageOnProgress() {
   return (

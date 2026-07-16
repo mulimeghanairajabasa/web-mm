@@ -1,3 +1,4 @@
+// components/icons/tapisMotif.tsx
 import { cn } from "@/lib/utils";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
