@@ -84,7 +84,7 @@ export const metadataTentang: Metadata = {
     title: "Tentang Muli Mekhanai Rajabasa",
     description:
       "Visi dan misi organisasi pemuda Rajabasa dalam aksi sosial dan budaya.",
-    url: `${urlBase}/og/mulimekhanai.png`,
+    url: `${urlBase}/tentang`,
     siteName: "Muli Mekhanai Rajabasa",
     type: "website",
   },
@@ -98,9 +98,17 @@ export const metadataKegiatan: Metadata = {
     title: "Agenda Kegiatan Muli Mekhanai Rajabasa",
     description:
       "Daftar kegiatan sosial dan budaya pemuda Rajabasa, Bandar Lampung.",
-    url: `${urlBase}/og/mulimekhanai.png`,
+    url: `${urlBase}/kegiatan`,
     siteName: "Muli Mekhanai Rajabasa",
     type: "website",
+    images: [
+      {
+        url: `${urlBase}/og/kegiatan.png`,
+        width: 1200,
+        height: 630,
+        alt: "Kegiatan Muli Mekhanai Rajabasa",
+      },
+    ],
   },
 };
 
@@ -112,7 +120,7 @@ export const metadataArtikel: Metadata = {
     title: "Artikel & Cerita Pemuda Rajabasa",
     description:
       "Baca kisah dan pemikiran pemuda Rajabasa tentang budaya dan aksi sosial.",
-    url: `${urlBase}/og/mulimekhanai.png`,
+    url: `${urlBase}/artikel`,
     siteName: "Muli Mekhanai Rajabasa",
     type: "article", // Gunakan 'article' untuk konten blog
   },
@@ -125,7 +133,7 @@ export const metadataKontak: Metadata = {
   openGraph: {
     title: "Kontak Muli Mekhanai Rajabasa",
     description: "Informasi kontak dan kolaborasi dengan pemuda Rajabasa.",
-    url: `${urlBase}/og/mulimekhanai.png`,
+    url: `${urlBase}/kontak`,
     siteName: "Muli Mekhanai Rajabasa",
     type: "website",
   },
