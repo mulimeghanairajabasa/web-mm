@@ -90,20 +90,20 @@ export const metadataTentang: Metadata = {
   },
 };
 
-export const metadataKegiatan: Metadata = {
-  title: "Kegiatan & Agenda",
+export const metadataHut81: Metadata = {
+  title: "HUT RI 81 Muli Mekhanai Rajabasa",
   description:
-    "Jelajahi agenda kegiatan, aksi sosial, dan perayaan budaya yang diselenggarakan oleh Muli Mekhanai Rajabasa.",
+    "Perayaan HUT ke-81 Muli Mekhanai Rajabasa dengan berbagai kegiatan sosial dan budaya di Bandar Lampung.",
   openGraph: {
-    title: "Agenda Kegiatan Muli Mekhanai Rajabasa",
+    title: "HUT RI 81 Ajak Muli Mekhanai Rajabasa",
     description:
-      "Daftar kegiatan sosial dan budaya pemuda Rajabasa, Bandar Lampung.",
-    url: `${urlBase}/kegiatan`,
+      "Dirgahayu Republik Indonesia ke-81! Bergabunglah dalam perayaan HUT Muli Mekhanai Rajabasa dengan berbagai kegiatan sosial dan budaya.",
+    url: `${urlBase}/hut-81`,
     siteName: "Muli Mekhanai Rajabasa",
     type: "website",
     images: [
       {
-        url: `${urlBase}/og/kegiatan.png`,
+        url: `${urlBase}/og/hut81.png`,
         width: 1200,
         height: 630,
         alt: "Kegiatan Muli Mekhanai Rajabasa",

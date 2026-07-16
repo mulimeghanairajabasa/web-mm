@@ -30,7 +30,7 @@ interface HeaderProps {
 const navLinks = [
   { name: "Beranda", href: "/" },
   { name: "Tentang Kami", href: "/tentang" },
-  { name: "Kegiatan", href: "/kegiatan" },
+  { name: "Kegiatan", href: "/hut-81" },
   { name: "Artikel", href: "/artikel" },
   { name: "Kontak", href: "/kontak" },
 ];

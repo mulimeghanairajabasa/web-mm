@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const usefulLinks = [
   { label: "Beranda", href: "/" },
   { label: "Tentang Kami", href: "/about" },
-  { label: "Kegiatan", href: "/kegiatan" },
+  { label: "Kegiatan", href: "/hut-81" },
   { label: "Artikel", href: "/artikel" },
   { label: "Kontak", href: "/kontak" },
 ];
