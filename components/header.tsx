@@ -18,6 +18,7 @@ import {
 
 // Impor Logo
 import LogoMuliMekhnai from "@/components/icons/logoMuliMekhnai";
+import { trackEvent } from "@/lib/analytics";
 
 interface HeaderProps {
   /**
@@ -52,6 +53,15 @@ export default function Header2({ className }: HeaderProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleGabungButton = () => {
+    // Jalankan pelacakan sebelum mengarahkan pengguna
+    trackEvent("click_gabung", {
+      event_category: "Interaksi",
+      event_label: "Tombol Gabung Utama",
+      location: "Header",
+    });
+  };
 
   return (
     <header
@@ -98,6 +108,7 @@ export default function Header2({ className }: HeaderProps) {
           <Button
             className="hidden md:inline-flex rounded-full px-6 shadow-md hover:shadow-lg transition-all"
             variant="default"
+            onClick={handleGabungButton}
           >
             Gabung
           </Button>

@@ -3,6 +3,7 @@ import { metadataGlobal, viewportGlobal } from "@/lib/metadata";
 import { organizationSchema } from "@/lib/json-ld";
 import { inter, courgette, comicNeue } from "@/styles/fonts";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const viewport = viewportGlobal;
 export const metadata = metadataGlobal;
@@ -12,6 +13,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html
       lang="id"
@@ -26,6 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
