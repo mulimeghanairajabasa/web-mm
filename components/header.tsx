@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { LayoutDashboard, Menu } from "lucide-react";
 
 // Impor komponen Shadcn
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,13 @@ import {
 // Impor Logo
 import LogoMuliMekhnai from "@/components/icons/logoMuliMekhnai";
 import { trackEvent } from "@/lib/analytics";
+import {
+  Show,
+  SignInButton,
+  useClerk,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 
 interface HeaderProps {
   /**
@@ -41,6 +49,11 @@ export default function Header2({ className }: HeaderProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
 
+  const { user, isLoaded } = useUser();
+  const { signOut } = useClerk();
+
+  const isAdmin = isLoaded && user?.publicMetadata?.role === "admin";
+
   React.useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -61,6 +74,11 @@ export default function Header2({ className }: HeaderProps) {
       event_label: "Tombol Gabung Utama",
       location: "Header",
     });
+  };
+
+  const handleSignOut = async () => {
+    setIsOpen(false);
+    await signOut();
   };
 
   return (
@@ -105,13 +123,46 @@ export default function Header2({ className }: HeaderProps) {
         {/* UJUNG KANAN: Button & Mobile Menu */}
         <div className="flex items-center gap-4 relative z-10">
           {/* Tombol Gabung (Desktop) - Menggunakan warna Emas (#c69009) yang selalu kontras */}
-          <Button
-            className="hidden md:inline-flex rounded-full px-6 shadow-md hover:shadow-lg transition-all"
-            variant="default"
-            onClick={handleGabungButton}
-          >
-            Gabung
-          </Button>
+
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <Button
+                className="hidden md:inline-flex rounded-full px-6 shadow-md hover:shadow-lg transition-all"
+                variant="default"
+                onClick={handleGabungButton}
+              >
+                Gabung
+              </Button>
+            </SignInButton>
+          </Show>
+
+          <Show when="signed-in">
+            <div className="hidden md:flex items-center gap-3 ">
+              {isAdmin && (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="rounded-lg border-b border-border/50 transition-colors hover:text-primary text-foreground"
+                >
+                  <Link href="/dashboard">
+                    <LayoutDashboard className="h-4 w-4" />
+                    Dashboard
+                  </Link>
+                </Button>
+              )}
+            </div>
+
+            <div className="hidden md:flex items-center">
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8 border border-[rgba(29,158,117,0.3)]",
+                  },
+                }}
+              />
+            </div>
+          </Show>
 
           {/* Menu Mobile (Sheet Shadcn) */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -137,6 +188,36 @@ export default function Header2({ className }: HeaderProps) {
                 </SheetTitle>
               </SheetHeader>
 
+              {/* Kartu info user (mobile) - hanya tampil saat sudah login */}
+              <Show when="signed-in">
+                <div className="px-8 mb-4">
+                  <div className="flex items-center gap-3 rounded-xl border border-border bg-muted/40 p-3">
+                    {user?.imageUrl ? (
+                      <Image
+                        src={user.imageUrl}
+                        alt={user.fullName ?? "Foto profil"}
+                        width={44}
+                        height={44}
+                        className="h-11 w-11 rounded-full object-cover border border-border shrink-0"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="h-11 w-11 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0">
+                        {user?.fullName?.charAt(0) ?? "U"}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-foreground truncate">
+                        {user?.fullName ?? "Pengguna"}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {user?.primaryEmailAddress?.emailAddress ?? "-"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Show>
+
               <div className="flex flex-col gap-2 flex-1 px-8">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
@@ -154,17 +235,43 @@ export default function Header2({ className }: HeaderProps) {
                     </Link>
                   );
                 })}
+
+                {isAdmin && (
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 text-lg font-medium py-3 border-b border-border/50 transition-colors hover:text-primary text-foreground"
+                  >
+                    <LayoutDashboard className="h-5 w-5" />
+                    Dashboard
+                  </Link>
+                )}
               </div>
 
-              {/* Tombol Gabung (Mobile) */}
+              {/* Tombol Gabung / Keluar (Mobile) */}
               <div className="mt-auto pt-6 pb-4">
-                <Button
-                  className="w-full  text-white h-12 shadow-md"
-                  size="lg"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Gabung Sekarang
-                </Button>
+                <Show when="signed-out">
+                  <SignInButton mode="modal">
+                    <Button
+                      className="w-full text-white h-12 shadow-md"
+                      size="lg"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Gabung Sekarang
+                    </Button>
+                  </SignInButton>
+                </Show>
+
+                <Show when="signed-in">
+                  <Button
+                    className="w-full h-12 shadow-md"
+                    size="lg"
+                    variant="outline"
+                    onClick={handleSignOut}
+                  >
+                    Keluar
+                  </Button>
+                </Show>
               </div>
             </SheetContent>
           </Sheet>

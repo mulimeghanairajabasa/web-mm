@@ -6,7 +6,7 @@
 <!-- 2. Desain skema Prisma: tabel Ucapan (id, clerkUserId unique, nama, asal, noHp, isiUcapan, skor nullable, isHidden boolean, createdAt, updatedAt) dan tabel EventSettings (id, isPemenangTampil boolean, updatedAt). -->
 <!-- 3. Jalankan migration pertama (prisma migrate dev), verifikasi tabel di Neon. -->
 
-4. Setup Clerk di project (kalau belum ada): install SDK, konfigurasi middleware, buat role admin di Clerk Dashboard untuk akun kamu.
+<!-- 4. Setup Clerk di project (kalau belum ada): install SDK, konfigurasi middleware, buat role admin di Clerk Dashboard untuk akun kamu. -->
 
 ## Fase 2 — Backend Logic (Server Actions / API Routes)
 
