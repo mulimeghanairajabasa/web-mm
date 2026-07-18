@@ -10,12 +10,12 @@
 
 ## Fase 2 — Backend Logic (Server Actions / API Routes)
 
-5. Server action submit/update ucapan: validasi user login, cek apakah clerkUserId sudah punya ucapan (insert vs update), cek apakah ucapan sudah dinilai (skor != null → tolak edit), cek apakah isPemenangTampil = true (→ tolak dengan pesan halus).
+<!-- 5. Server action submit/update ucapan: validasi user login, cek apakah clerkUserId sudah punya ucapan (insert vs update), cek apakah ucapan sudah dinilai (skor != null → tolak edit), cek apakah isPemenangTampil = true (→ tolak dengan pesan halus).
 6. Server action fetch ucapan publik: query paginated (10/halaman), urut createdAt DESC, filter isHidden = false, hanya ambil field yang boleh publik (tanpa noHp).
 7. Server action fetch ucapan untuk dashboard: semua data termasuk noHp, dengan sort/filter (misal belum dinilai, atau skor tertinggi).
 8. Server action update skor (khusus admin, guarded role check).
 9. Server action toggle hide/unhide ucapan (khusus admin).
-10. Server action toggle tampilkan pemenang (khusus admin) — begitu di-on, kunci semua penilaian lanjutan (bisa berupa flag tambahan atau validasi di action skor). 11. Query/logic top 3 pemenang: ORDER BY skor DESC, createdAt ASC, exclude isHidden = true dan skor IS NULL.
+10. Server action toggle tampilkan pemenang (khusus admin) — begitu di-on, kunci semua penilaian lanjutan (bisa berupa flag tambahan atau validasi di action skor). 11. Query/logic top 3 pemenang: ORDER BY skor DESC, createdAt ASC, exclude isHidden = true dan skor IS NULL. -->
 
 ### Fase 3 — UI Publik (Refactor UcapanSection)
 

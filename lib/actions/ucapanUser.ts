@@ -70,8 +70,16 @@ function validateInput(input: UcapanFormInput): string | null {
 ───────────────────────────────────────────── */
 
 export async function submitUcapan(
-  input: UcapanFormInput,
+  _prevState: SubmitUcapanResult | null,
+  formData: FormData,
 ): Promise<SubmitUcapanResult> {
+  const input: UcapanFormInput = {
+    nama: String(formData.get("nama") ?? ""),
+    asalDaerah: String(formData.get("asalDaerah") ?? ""),
+    noHp: String(formData.get("noHp") ?? ""),
+    isiUcapan: String(formData.get("isiUcapan") ?? ""),
+  };
+
   const { userId } = await auth();
 
   if (!userId) {
