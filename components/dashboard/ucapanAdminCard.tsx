@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, MapPin, Phone, Save } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { saveUcapanCard } from "@/lib/actions/admin";
+import { toggleHideUcapan, updateSkor } from "@/lib/actions/admin";
 import type { UcapanDashboardItem } from "@/lib/actions/admin";
 
 interface UcapanAdminCardProps {
@@ -17,16 +17,35 @@ export default function UcapanAdminCard({ item }: UcapanAdminCardProps) {
 
   const [skorInput, setSkorInput] = React.useState(item.skor?.toString() ?? "");
   const [isHidden, setIsHidden] = React.useState(item.isHidden);
+  const [isTogglingHide, setIsTogglingHide] = React.useState(false);
   const [isSaving, setIsSaving] = React.useState(false);
   const [feedback, setFeedback] = React.useState<string | null>(null);
 
-  async function handleSave() {
+  async function handleToggleHide() {
+    const next = !isHidden;
+    setIsHidden(next); // optimistic
+    setIsTogglingHide(true);
+
+    const result = await toggleHideUcapan(item.id, next);
+
+    setIsTogglingHide(false);
+
+    if (!result.success) {
+      setIsHidden(!next); // revert kalau gagal
+      setFeedback(result.message);
+      return;
+    }
+
+    router.refresh();
+  }
+
+  async function handleSaveSkor() {
     setIsSaving(true);
     setFeedback(null);
 
     const skorValue = skorInput.trim() === "" ? 0 : Number(skorInput);
 
-    const result = await saveUcapanCard(item.id, skorValue, isHidden);
+    const result = await updateSkor(item.id, skorValue);
 
     setIsSaving(false);
 
@@ -35,11 +54,7 @@ export default function UcapanAdminCard({ item }: UcapanAdminCardProps) {
       return;
     }
 
-    setFeedback(
-      result.skorLocked
-        ? "Tersimpan (skor tidak diubah — pemenang sudah diumumkan)."
-        : "Tersimpan.",
-    );
+    setFeedback("Skor tersimpan.");
     router.refresh();
   }
 
@@ -72,9 +87,10 @@ export default function UcapanAdminCard({ item }: UcapanAdminCardProps) {
 
         <button
           type="button"
-          onClick={() => setIsHidden((prev) => !prev)}
+          onClick={handleToggleHide}
+          disabled={isTogglingHide}
           className={cn(
-            "shrink-0 p-2 rounded-full border transition-colors",
+            "shrink-0 p-2 rounded-full border transition-colors disabled:opacity-50",
             isHidden
               ? "border-gray-300 text-gray-400 hover:bg-gray-100"
               : "border-[#b8860b]/30 text-[#b8860b] hover:bg-[#b8860b]/10",
@@ -112,12 +128,12 @@ export default function UcapanAdminCard({ item }: UcapanAdminCardProps) {
         <Button
           type="button"
           size="sm"
-          onClick={handleSave}
+          onClick={handleSaveSkor}
           disabled={isSaving}
           className="gap-1.5"
         >
           <Save className="w-3.5 h-3.5" />
-          {isSaving ? "Menyimpan..." : "Simpan"}
+          {isSaving ? "Menyimpan..." : "Simpan Skor"}
         </Button>
 
         {feedback && (

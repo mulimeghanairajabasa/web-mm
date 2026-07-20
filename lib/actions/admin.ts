@@ -108,48 +108,6 @@ export async function getUcapanDashboard(
 }
 
 /* ─────────────────────────────────────────────
-   Simpan gabungan: skor + isHidden (1 tombol "Simpan")
-   Kalau pemenang sudah tampil -> skor diabaikan (dikunci),
-   tapi perubahan isHidden ("rem darurat") tetap diproses.
-───────────────────────────────────────────── */
-
-export type SaveUcapanResult =
-  | { success: true; skorLocked: boolean }
-  | { success: false; message: string };
-
-export async function saveUcapanCard(
-  ucapanId: string,
-  skor: number,
-  isHidden: boolean,
-): Promise<SaveUcapanResult> {
-  await requireAdmin();
-
-  if (!Number.isInteger(skor) || skor < 0 || skor > 100) {
-    return { success: false, message: "Skor harus berupa angka bulat 0-100." };
-  }
-
-  const ucapan = await prisma.ucapan.findUnique({ where: { id: ucapanId } });
-  if (!ucapan) {
-    return { success: false, message: "Ucapan tidak ditemukan." };
-  }
-
-  const skorLocked = await isPemenangTampil();
-
-  await prisma.ucapan.update({
-    where: { id: ucapanId },
-    data: {
-      isHidden,
-      ...(skorLocked ? {} : { skor }),
-    },
-  });
-
-  revalidatePath("/dashboard");
-  revalidatePath("/hut-81");
-
-  return { success: true, skorLocked };
-}
-
-/* ─────────────────────────────────────────────
    Update skor (0-100)
 ───────────────────────────────────────────── */
 
