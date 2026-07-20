@@ -1,13 +1,8 @@
 "use client";
-
 import React from "react";
-import { cn } from "@/lib/utils";
-import {
-  HeartHandshake,
-  QrCode,
-  CheckCircle2,
-  ShieldCheck,
-} from "lucide-react";
+// import { cn } from "@/lib/utils";
+import { HeartHandshake, CheckCircle2, ShieldCheck } from "lucide-react";
+import CodeQRIS from "../icons/qr";
 
 export default function DukunganSection() {
   return (
@@ -77,20 +72,16 @@ export default function DukunganSection() {
             </div>
 
             {/* Area Barcode */}
-            <div className="p-8 flex flex-col items-center">
-              <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
-                Scan di sini
-              </p>
-
+            <div className="relative p-8 flex flex-col items-center ">
               {/* Mockup QR Code */}
-              <div className="w-48 h-48 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center mb-6 relative group">
-                <QrCode className="w-32 h-32 text-gray-400 group-hover:text-[#E12828] transition-colors" />
+              <div className="w-full aspect-square bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center mb-6 relative group">
+                <CodeQRIS className=" text-black group-hover:text-[#E12828] transition-colors" />
 
                 {/* Sudut-sudut pembidik QR (opsional untuk detail visual) */}
-                <div className="absolute top-2 left-2 w-6 h-6 border-t-4 border-l-4 border-[#E12828] rounded-tl-lg"></div>
-                <div className="absolute top-2 right-2 w-6 h-6 border-t-4 border-r-4 border-[#E12828] rounded-tr-lg"></div>
-                <div className="absolute bottom-2 left-2 w-6 h-6 border-b-4 border-l-4 border-[#E12828] rounded-bl-lg"></div>
-                <div className="absolute bottom-2 right-2 w-6 h-6 border-b-4 border-r-4 border-[#E12828] rounded-br-lg"></div>
+                <div className="absolute -top-3 -left-3 w-6 h-6 border-t-4 border-l-4 border-[#E12828] rounded-tl-lg"></div>
+                <div className="absolute -top-3 -right-3 w-6 h-6 border-t-4 border-r-4 border-[#E12828] rounded-tr-lg"></div>
+                <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-4 border-l-4 border-[#E12828] rounded-bl-lg"></div>
+                <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-4 border-r-4 border-[#E12828] rounded-br-lg"></div>
               </div>
 
               {/* Info Merchant */}

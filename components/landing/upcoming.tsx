@@ -35,7 +35,7 @@ const events: EventData[] = [
     time: "08.00 – 17.00 WIB",
     location: "Lapangan Rajabasa, Bandar Lampung",
     price: "Gratis",
-    image: "/images/hero.png",
+    image: "/images/merdeka.webp",
     link: "/hut-ri-81",
   },
   {

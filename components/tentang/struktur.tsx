@@ -21,7 +21,7 @@ function EyebrowLine() {
 export default function StrukturSection() {
   return (
     <section className={cn("bg-background", "px-[5%] py-[10vh]")}>
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-275 mx-auto">
         {/* ── Header ── */}
         <div className="text-center mb-[6vh]">
           <p
@@ -50,12 +50,13 @@ export default function StrukturSection() {
         {/* ── Image ── */}
         <div className={cn("relative w-full", "border border-border")}>
           <Image
-            src="/images/struktur.png"
+            src="/images/struktur.webp"
             alt="Struktur Organisasi Muli Mekhanai Rajabasa"
             width={0}
             height={0}
             sizes="(max-width: 768px) 90vw, (max-width: 1100px) 85vw, 1100px"
             className="w-full h-auto"
+            unoptimized
           />
         </div>
       </div>

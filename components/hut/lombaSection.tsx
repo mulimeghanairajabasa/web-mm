@@ -3,6 +3,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Calendar, Clock, MapPin, Plus, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 /* ─────────────────────────────────────────────
    Types & Mock Data
@@ -19,13 +20,14 @@ interface EventItem {
   time: string;
   location: string;
   description: string;
+  imageUrl: string; // Optional: URL for the event image
 }
 
 /* Diurutkan kronologis, 7 Agustus → 29 Agustus 2026.
    Acara berpasangan dengan rentang tanggal sama (Mobile Legend & Mancing,
    Bola & Gaple) masing-masing berlangsung sepanjang rentang penuh.
    Acara di tanggal 17 Agustus dibedakan lewat jam agar tidak tumpang tindih. */
-const MOCK_EVENTS: EventItem[] = [
+const EVENTS: EventItem[] = [
   {
     id: 1,
     title: "Lomba Bola Antar RT",
@@ -36,6 +38,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Lapangan Bola Rajabasa",
     description:
       "Turnamen sepak bola antar RT yang digelar selama tiga hari. Ajang unjuk kekompakan sekaligus pemanasan menyambut bulan kemerdekaan.",
+    imageUrl: "/images/acara/lomba-bola.webp",
   },
   {
     id: 2,
@@ -47,6 +50,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Balai Desa Rajabasa",
     description:
       "Turnamen kartu domino klasik yang jadi favorit warga tiap malam. Bawa pasanganmu dan buktikan siapa yang paling jitu membaca kartu.",
+    imageUrl: "/images/acara/lomba-gaple.webp",
   },
   {
     id: 3,
@@ -58,6 +62,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Balai Desa Rajabasa",
     description:
       "Turnamen E-Sport antar pemuda desa berlangsung empat hari beruntun. Bawa tim terbaikmu dan rebut gelar juara MMR!",
+    imageUrl: "/images/acara/lomba-ml.webp",
   },
   {
     id: 4,
@@ -69,6 +74,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Kolam Pemancingan Rajabasa",
     description:
       "Adu sabar dan strategi memancing selama empat hari, dengan hadiah untuk perolehan ikan terberat tiap harinya.",
+    imageUrl: "/images/acara/lomba-mancing.webp",
   },
   {
     id: 5,
@@ -80,6 +86,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Lapangan Utama Rajabasa",
     description:
       "Serangkaian permainan tradisional untuk si kecil: balap kelereng, makan kerupuk, hingga estafet karet gelang.",
+    imageUrl: "/images/acara/lomba-anak.webp",
   },
   {
     id: 6,
@@ -91,6 +98,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Lapangan Utama Rajabasa",
     description:
       "Upacara pengibaran bendera sang saka merah putih memperingati HUT RI ke-81, dibuka untuk seluruh warga desa.",
+    imageUrl: "/images/acara/upacara.webp",
   },
   {
     id: 7,
@@ -102,6 +110,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Sepanjang Jalan Desa",
     description:
       "Arak-arakan warga, pelajar, dan komunitas adat menyusuri jalan desa dengan kostum merah putih dan atribut budaya Lampung.",
+    imageUrl: "/images/acara/pawai.webp",
   },
   {
     id: 8,
@@ -113,6 +122,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Balai Desa Rajabasa",
     description:
       "Pemotongan tumpeng sebagai rasa syukur atas kemerdekaan, dilanjutkan makan bersama seluruh warga.",
+    imageUrl: "/images/acara/tumpeng.webp",
   },
   {
     id: 9,
@@ -124,6 +134,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Balai Desa Rajabasa",
     description:
       "Sambutan dan renungan kebangsaan dari tokoh masyarakat, mengajak generasi muda merawat semangat proklamasi.",
+    imageUrl: "/images/acara/lomba-pidato.webp",
   },
   {
     id: 10,
@@ -134,7 +145,8 @@ const MOCK_EVENTS: EventItem[] = [
     time: "19:30 WIB",
     location: "Panggung Utama",
     description:
-      "Pertunjukan tari tradisional Lampung yang sarat gerak lemah gemulai, menutup rangkaian acara 17 Agustus dengan khidmat.",
+      "Pertunjukan tari tradisional Lampung yang sarat gerak penuh wibawa, menutup rangkaian acara 17 Agustus dengan khidmat.",
+    imageUrl: "/images/acara/tari-ngigel.webp",
   },
   {
     id: 11,
@@ -146,6 +158,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "GOR Rajabasa",
     description:
       "Turnamen bulu tangkis tiga hari untuk kategori tunggal dan ganda, terbuka bagi seluruh warga desa dan sekitarnya.",
+    imageUrl: "/images/acara/lomba-badminton.webp",
   },
   {
     id: 12,
@@ -157,6 +170,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Panggung Utama",
     description:
       "Penampilan tari kreasi modern hasil karya sanggar muda desa, memadukan gerak kontemporer dengan nuansa budaya lokal.",
+    imageUrl: "/images/acara/tari-kreasi.webp",
   },
   {
     id: 13,
@@ -168,6 +182,7 @@ const MOCK_EVENTS: EventItem[] = [
     location: "Panggung Utama",
     description:
       "Acara penutup rangkaian HUT RI ke-81: hiburan musik, penampilan bintang tamu, dan pembagian hadiah bagi para pemenang lomba.",
+    imageUrl: "/images/acara/puncak.webp",
   },
 ];
 
@@ -212,18 +227,21 @@ export default function SectionLomba() {
 
         {/* ── Grid Cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {MOCK_EVENTS.map((event) => (
+          {EVENTS.map((event) => (
             <div
               key={event.id}
               className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col transition-shadow hover:shadow-md"
             >
               {/* ── Image Area (Mock Placeholder) ── */}
-              <div className="relative w-full h-40 bg-gray-200">
-                <div className="w-full h-full bg-gradient-to-tr from-gray-200 to-gray-100 flex items-center justify-center">
-                  <span className="text-gray-400 font-medium text-sm">
-                    Image {event.id}
-                  </span>
-                </div>
+              <div className="relative w-full h-40 bg-blue-800">
+                <Image
+                  src={event.imageUrl}
+                  alt={event.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  unoptimized
+                />
 
                 {/* Badges */}
                 <div
@@ -240,7 +258,7 @@ export default function SectionLomba() {
               </div>
 
               {/* ── Content Area ── */}
-              <div className="p-5 flex flex-col flex-grow">
+              <div className="p-5 flex flex-col grow">
                 <h3 className="font-bold text-lg text-gray-900 mb-4 leading-tight">
                   {event.title}
                 </h3>

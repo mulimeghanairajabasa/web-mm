@@ -12,7 +12,7 @@ const stats = [
   { number: "100%", label: "Berbasis Budaya" },
 ];
 
-const CHAIRMAN_NAME = "Ahmad Rifaldi";
+const CHAIRMAN_NAME = "Abdul Majid";
 
 /* ─────────────────────────────────────────────
    Sub-components
@@ -163,12 +163,12 @@ function RightColumn() {
         )}
       >
         <Image
-          src="/images/hero.png"
+          src="/images/majid.webp"
           alt={`Foto ${CHAIRMAN_NAME}, Ketua Muli Mekhanai Rajabasa`}
           fill
           sizes="(max-width: 768px) 320px, 45vw"
           className="object-cover object-top"
-          priority
+          unoptimized
         />
 
         {/* Inner frame ornament */}

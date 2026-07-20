@@ -18,7 +18,7 @@ function OrnamentRule() {
   return (
     <div className="flex items-center gap-3 my-6" aria-hidden="true">
       <span className="w-12 h-px bg-[#e5e5e5]" />
-      <span className="w-[5px] h-[5px] rounded-full bg-[#B03E3E]" />
+      <span className="w-1.25 h-1.25 rounded-full bg-[#B03E3E]" />
       <span className="w-12 h-px bg-[#e5e5e5]" />
     </div>
   );
@@ -52,7 +52,7 @@ function CardUcapan() {
         mewarisi semangat itu dan berjanji untuk terus menjaganya. Dirgahayu
         Indonesiaku.
       </p>
-      <p className="text-[11px] text-[#737373] font-medium tracking-[0.05em]">
+      <p className="text-[11px] text-[#737373] font-medium tracking-wider">
         — Muli Mekhanai Rajabasa
       </p>
     </div>
@@ -81,7 +81,7 @@ function CardVisi() {
         melainkan dengan tindakan nyata — menjaga budaya, merangkul sesama, dan
         bergerak bersama demi masyarakat yang lebih baik.
       </p>
-      <p className="text-[11px] text-white/50 font-medium tracking-[0.05em]">
+      <p className="text-[11px] text-white/50 font-medium tracking-wider">
         — Muli Mekhanai Rajabasa
       </p>
     </div>
@@ -98,9 +98,9 @@ export default function Merdeka() {
       id="merdeka"
       className={cn("bg-background overflow-hidden", "px-[5%] py-[10vh]")}
     >
-      <div className="max-w-[1100px] mx-auto flex flex-col gap-[6vh] items-center">
+      <div className="max-w-275 mx-auto flex flex-col gap-[6vh] items-center">
         {/* ── Header ── */}
-        <div className="max-w-[640px] text-center">
+        <div className="max-w-160 text-center">
           <p
             className={cn(
               "inline-flex items-center gap-3 mb-5",
@@ -161,21 +161,21 @@ export default function Merdeka() {
             className={cn(
               "relative shrink-0",
               "w-full md:w-[42%]",
-              "min-h-[300px] md:min-h-0",
+              "min-h-75 md:min-h-0",
             )}
           >
             <Image
-              src="/images/hero.png"
+              src="/images/merdeka.webp"
               alt="Foto Muli Mekhanai Rajabasa"
               fill
               sizes="(max-width: 768px) 100vw, 42vw"
-              className="object-cover object-top"
+              className="object-contain"
               priority
             />
 
             {/* Inner frame ornament */}
             <div
-              className="absolute inset-[10px] border border-white/20 pointer-events-none"
+              className="absolute inset-2.5 border border-white/20 pointer-events-none"
               aria-hidden="true"
             />
           </div>
