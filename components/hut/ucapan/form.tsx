@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useActionState } from "react";
+import { useActionState, startTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useUser, useClerk } from "@clerk/nextjs";
 import {
@@ -21,7 +21,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
 import { submitUcapan, type UcapanUserData } from "@/lib/actions/ucapanUser";
 import UcapanFeedbackDialog from "./feedbackDialog";
 
@@ -126,7 +125,9 @@ export default function UcapanForm({ initialData }: UcapanFormProps) {
     formData.set("noHp", fields.noHp);
     formData.set("isiUcapan", fields.isiUcapan);
 
-    formAction(formData);
+    startTransition(() => {
+      formAction(formData);
+    });
   }
 
   return (

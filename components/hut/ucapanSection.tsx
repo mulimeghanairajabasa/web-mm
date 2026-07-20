@@ -1,8 +1,21 @@
 import { getUcapanUser } from "@/lib/actions/ucapanUser";
-import UcapanForm from "./ucapan/form";
+import UcapanForm from "@/components/hut/ucapan/form";
+import UcapanGrid from "@/components/hut/ucapan/grid";
+import BannerPemenang from "@/components/hut/ucapan/bannerPemenang";
 
-export default async function UcapanSection() {
+interface UcapanSectionProps {
+  searchParams?: { page?: string | string[] };
+}
+
+export default async function UcapanSection({
+  searchParams,
+}: UcapanSectionProps) {
   const ucapanUser = await getUcapanUser();
+
+  const rawPage = Array.isArray(searchParams?.page)
+    ? searchParams?.page[0]
+    : searchParams?.page;
+  const page = Math.max(1, Number(rawPage) || 1);
 
   return (
     <section
@@ -20,12 +33,11 @@ export default async function UcapanSection() {
           </p>
         </div>
 
+        <BannerPemenang />
+
         <UcapanForm initialData={ucapanUser} />
 
-        {/*
-          Berikutnya (Fase 3 lanjutan): BannerPemenang, UcapanGrid + pagination
-          akan ditambahkan di sini setelah form ini kamu konfirmasi jalan lancar.
-        */}
+        <UcapanGrid page={page} />
       </div>
     </section>
   );

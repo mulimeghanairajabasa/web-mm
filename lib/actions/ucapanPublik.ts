@@ -75,6 +75,14 @@ export async function getUcapanPublik(
    (dipakai oleh banner publik & dashboard panitia)
 ───────────────────────────────────────────── */
 
+export async function isPemenangTampil(): Promise<boolean> {
+  const setting = await prisma.eventSetting.findUnique({
+    where: { key: "pemenang_tampil" },
+  });
+
+  return setting?.value === "true";
+}
+
 export async function getTop3Pemenang(): Promise<Top3PemenangItem[]> {
   const top3 = await prisma.ucapan.findMany({
     where: {

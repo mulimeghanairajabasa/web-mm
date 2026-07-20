@@ -19,12 +19,14 @@
 
 ### Fase 3 — UI Publik (Refactor UcapanSection)
 
-12. Refactor form jadi shadcn Collapsible: state terbuka/tertutup, title dinamis ("Berikan Ucapan" vs "Edit Ucapan"), hapus field email.
-13. Implementasi draft ke browser storage (simpan saat guest ngetik, restore setelah login, hapus setelah submit sukses).
-14. Hubungkan form ke server action submit/update, tampilkan popup shadcn (sukses/edit/ditolak-karena-selesai).
-15. Refactor grid card ucapan: fetch data asli dari DB, tambahkan badge skor (??/100 atau angka), hapus mock data.
-16. Implementasi pagination (10/halaman) menggantikan tombol "Lihat Ucapan Lainnya".
-17. Bikin komponen banner pemenang statis (div pengganti banner hadiah) — hanya tampil kalau isPemenangTampil = true.
+<!-- 12. Refactor form jadi shadcn Collapsible: state terbuka/tertutup, title dinamis ("Berikan Ucapan" vs "Edit Ucapan"), hapus field email. -->
+<!-- 13. Implementasi draft ke browser storage (simpan saat guest ngetik, restore setelah login, hapus setelah submit sukses). -->
+<!-- 14. Hubungkan form ke server action submit/update, tampilkan popup shadcn (sukses/edit/ditolak-karena-selesai). -->
+
+<!-- 15. Refactor grid card ucapan: fetch data asli dari DB, tambahkan badge skor (??/100 atau angka), hapus mock data. -->
+<!-- 16. Implementasi pagination (10/halaman) menggantikan tombol "Lihat Ucapan Lainnya". -->
+
+<!-- 17. Bikin komponen banner pemenang statis (div pengganti banner hadiah) — hanya tampil kalau isPemenangTampil = true. -->
 
 ## Fase 4 — Dashboard Panitia
 
@@ -50,6 +52,8 @@ pnpm exec prisma init --datasource-provider postgresql
 
 pnpm dlx prisma migrate dev --name init
 pnpm dlx prisma generate
+
+pnpm dlx prisma db seed
 
 DATABASE_URL=postgres://daniel:<password>@ep-mute-rain-952417-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
 DIRECT_URL="postgres://daniel:<password>@ep-mute-rain-952417.us-east-2.aws.neon.tech/neondb"
