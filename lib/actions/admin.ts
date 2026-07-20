@@ -56,10 +56,22 @@ async function isPemenangTampil(): Promise<boolean> {
    Section "Ucapan" — list lengkap untuk panitia
 ───────────────────────────────────────────── */
 
+const DASHBOARD_PAGE_SIZE = 50;
+
+export interface UcapanDashboardResult {
+  items: UcapanDashboardItem[];
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+}
+
 export async function getUcapanDashboard(
+  page: number = 1,
   sortBy: SortDashboard = "terbaru",
-): Promise<UcapanDashboardItem[]> {
+): Promise<UcapanDashboardResult> {
   await requireAdmin();
+
+  const currentPage = Math.max(1, page);
 
   const orderBy =
     sortBy === "skor_tertinggi"
@@ -68,19 +80,73 @@ export async function getUcapanDashboard(
         ? [{ skor: "asc" as const }, { createdAt: "desc" as const }] // null duluan (Postgres: NULLS FIRST default utk ASC)
         : [{ createdAt: "desc" as const }];
 
-  return prisma.ucapan.findMany({
-    orderBy,
-    select: {
-      id: true,
-      nama: true,
-      asalDaerah: true,
-      noHp: true,
-      isiUcapan: true,
-      skor: true,
-      isHidden: true,
-      createdAt: true,
+  const [items, totalItems] = await Promise.all([
+    prisma.ucapan.findMany({
+      orderBy,
+      skip: (currentPage - 1) * DASHBOARD_PAGE_SIZE,
+      take: DASHBOARD_PAGE_SIZE,
+      select: {
+        id: true,
+        nama: true,
+        asalDaerah: true,
+        noHp: true,
+        isiUcapan: true,
+        skor: true,
+        isHidden: true,
+        createdAt: true,
+      },
+    }),
+    prisma.ucapan.count(),
+  ]);
+
+  return {
+    items,
+    currentPage,
+    totalPages: Math.max(1, Math.ceil(totalItems / DASHBOARD_PAGE_SIZE)),
+    totalItems,
+  };
+}
+
+/* ─────────────────────────────────────────────
+   Simpan gabungan: skor + isHidden (1 tombol "Simpan")
+   Kalau pemenang sudah tampil -> skor diabaikan (dikunci),
+   tapi perubahan isHidden ("rem darurat") tetap diproses.
+───────────────────────────────────────────── */
+
+export type SaveUcapanResult =
+  | { success: true; skorLocked: boolean }
+  | { success: false; message: string };
+
+export async function saveUcapanCard(
+  ucapanId: string,
+  skor: number,
+  isHidden: boolean,
+): Promise<SaveUcapanResult> {
+  await requireAdmin();
+
+  if (!Number.isInteger(skor) || skor < 0 || skor > 100) {
+    return { success: false, message: "Skor harus berupa angka bulat 0-100." };
+  }
+
+  const ucapan = await prisma.ucapan.findUnique({ where: { id: ucapanId } });
+  if (!ucapan) {
+    return { success: false, message: "Ucapan tidak ditemukan." };
+  }
+
+  const skorLocked = await isPemenangTampil();
+
+  await prisma.ucapan.update({
+    where: { id: ucapanId },
+    data: {
+      isHidden,
+      ...(skorLocked ? {} : { skor }),
     },
   });
+
+  revalidatePath("/dashboard");
+  revalidatePath("/hut-81");
+
+  return { success: true, skorLocked };
 }
 
 /* ─────────────────────────────────────────────
