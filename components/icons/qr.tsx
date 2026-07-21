@@ -8848,8 +8848,8 @@ export default function CodeQRIS({ className, ...props }: IconProps) {
         height="98"
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M21.7402 21.7388V118.777H118.779V21.7388H21.7402ZM35.6029 35.6014H104.916V104.915H35.6029V35.6014Z"
           fill="white"
         />
@@ -8890,8 +8890,8 @@ export default function CodeQRIS({ className, ...props }: IconProps) {
         height="98"
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M978.26 21.7388L881.221 21.7388V118.777H978.26V21.7388ZM964.397 35.6014V104.915H895.084V35.6014L964.397 35.6014Z"
           fill="white"
         />
@@ -8932,8 +8932,8 @@ export default function CodeQRIS({ className, ...props }: IconProps) {
         height="98"
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M21.7402 978.261H118.779V881.223H21.7402L21.7402 978.261ZM35.6029 964.399L35.6029 895.085H104.916V964.399H35.6029Z"
           fill="white"
         />

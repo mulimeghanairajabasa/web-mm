@@ -100,7 +100,7 @@ export default function Header2({ className }: HeaderProps) {
         </Link>
 
         {/* TENGAH: Navigasi Desktop */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 ">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
